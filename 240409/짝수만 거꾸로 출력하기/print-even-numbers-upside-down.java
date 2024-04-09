@@ -14,8 +14,9 @@ public class Main {
 
         Stack<Integer> stack = new Stack<>();
 
+
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
             int j = Integer.parseInt(st.nextToken());
             if (j % 2 == 0) {
                 stack.push(j);
