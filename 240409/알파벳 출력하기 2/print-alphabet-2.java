@@ -16,7 +16,10 @@ public class Main {
             }            
             for (int k = 0; k < n - i; k++) {
                 System.out.printf("%c ", count++);
-            }            
+                if (count >= 91) {
+                    count = 65;
+                }
+            }
             System.out.println();
         }
     }
