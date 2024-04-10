@@ -13,7 +13,7 @@ public class Main {
 
         int[] remains = new int[b];
 
-        while (a > 0) {
+        while (a > 1) {
             remains[a % b] += 1;
             a /= b;
         }
