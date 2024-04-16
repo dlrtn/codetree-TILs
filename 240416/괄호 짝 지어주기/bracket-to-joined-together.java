@@ -23,12 +23,12 @@ public class Main {
                 if (!stack.empty() && stack.peek() == '(') {
                     stack.pop();
                 } else {
-                    count += 2;
+                    stack.push(nowChar);
                 }
             }
         }
 
-        System.out.println(count);
+        System.out.println(stack.size());
 
     }
 }
