@@ -33,8 +33,13 @@ public class Main {
             char nextChar = stack.pop();
             if (nowChar == nextChar) {
                 count++;
+                if (stack.empty()) {
+                    break;
+                }
+                nowChar = stack.pop();
             } else {
                 count += 2;
+                nowChar = nextChar;
             }
         }
 
