@@ -28,7 +28,16 @@ public class Main {
             }
         }
 
-        System.out.println(stack.size());
+        char nowChar = stack.pop();
+        while (!stack.empty()) {
+            char nextChar = stack.pop();
+            if (nowChar == nextChar) {
+                count++;
+            } else {
+                count += 2;
+            }
+        }
 
+        System.out.println(count);
     }
 }
