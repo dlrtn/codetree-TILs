@@ -24,13 +24,13 @@ public class Main {
         }
 
         int count = 0;
-        int start = 0;
+        int start = q.poll();
 
         while (!q.isEmpty()) {
             int now = q.poll();
-            if (now > start + l) {
+            if (now >= start + l) {
                 count++;
-                start = now;
+                start = now + 1;
             }
         }
 
