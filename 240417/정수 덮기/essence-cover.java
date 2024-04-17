@@ -19,9 +19,7 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
-            int m = Integer.parseInt(st.nextToken());
-
-            arr[i] = m;
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
         arr = Arrays.stream(arr).sorted().toArray();
@@ -31,20 +29,17 @@ public class Main {
             q.add(arr[i] + 1);
         }
 
-        int count = 1;
+        int count = 0;
         int start = q.poll();
         int now = 0;
         while (!q.isEmpty()) {
-            now = q.poll();
-            if (now >= start + l) {
-                if (!q.isEmpty()) {
-                    start = q.poll();
-                    count++;
-                }
+            while (!q.isEmpty() && now < start + l) {
+                now = q.poll();
             }
+            count++;
+            start = now;
         }
 
         System.out.println(count);
-
     }
 }
