@@ -29,15 +29,17 @@ public class Main {
             q.add(arr[i] + 1);
         }
 
-        int count = 0;
+        int count = 1;
         int start = q.poll();
         int now = 0;
+
         while (!q.isEmpty()) {
-            while (!q.isEmpty() && now < start + l) {
-                now = q.poll();
+            now = q.poll();
+            if (now - start <= l) {
+                continue;
             }
-            count++;
             start = now;
+            count++;
         }
 
         System.out.println(count);
