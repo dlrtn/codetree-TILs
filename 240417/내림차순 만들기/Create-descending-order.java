@@ -15,14 +15,22 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
+        int[] dp = new int[n];
         int count = 0;
 
-        for (int i = 0; i < n - 1; i++) {
-            if (arr[i] < arr[i + 1]) {
-                count++;
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (arr[j] > arr[i] && dp[j] + 1 > dp[i]) {
+                    dp[i] = dp[j] + 1;
+                }
             }
         }
 
-        System.out.println(count);
+        for (int i : dp) {
+            count = Math.max(count, i);
+        }
+
+        System.out.println(n - count);
     }
 }
