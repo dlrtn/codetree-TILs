@@ -1,10 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -35,31 +33,40 @@ public class Main {
             meetings[i] = new Meeting(a, b);
         }
 
-        meetings = Arrays.stream(meetings).sorted((a, b) -> {
-            if (a.end == b.end) {
-                return a.start - b.start;
+        PriorityQueue<Meeting> pq = new PriorityQueue<>((o1, o2) -> {
+            if (o1.end == o2.end) {
+                return o1.start - o2.start;
             }
-            return a.end - b.end;
-        }).toArray(Meeting[]::new);
+            return o1.end - o2.end;
+        });
 
-        Arrays.sort(meetings, Comparator.comparingInt(m -> m.end));
+        Collections.addAll(pq, meetings);
 
-        List<Integer> rooms = new ArrayList<>();
+        PriorityQueue<Meeting> q = new PriorityQueue<>((o1, o2) -> {
+            if (o1.end == o2.end) {
+                return o1.start - o2.start;
+            }
+            return o1.end - o2.end;
+        });
 
-        for (Meeting meeting : meetings) {
-            boolean hasRoom = false;
-            for (int i = 0; i < rooms.size(); i++) {
-                if (rooms.get(i) <= meeting.start) {
-                    rooms.set(i, meeting.end); // 기존 회의실을 사용할 수 있음을 나타냄
-                    hasRoom = true;
-                    break;
+        int count = 0;
+        while (!pq.isEmpty()) {
+            int end = 0;
+            int size = pq.size();
+            count++;
+            for (int i = 0; i < size; i++) {
+                Meeting meeting = pq.poll();
+
+                if (end <= meeting.start) {
+                    end = meeting.end;
+                } else {
+                    q.add(meeting);
                 }
             }
-            if (!hasRoom) {
-                rooms.add(meeting.end); // 새로운 회의실을 추가함
-            }
+            pq.addAll(q);
+            q.clear();
         }
 
-        System.out.println(rooms.size());
+        System.out.println(count);
     }
 }
