@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -34,39 +36,32 @@ public class Main {
         }
 
         PriorityQueue<Meeting> pq = new PriorityQueue<>((o1, o2) -> {
-            if (o1.end == o2.end) {
+            if (o1.start != o2.start) {
                 return o1.start - o2.start;
             }
             return o1.end - o2.end;
         });
 
-        Collections.addAll(pq, meetings);
+        pq.addAll(Arrays.asList(meetings));
 
-        PriorityQueue<Meeting> q = new PriorityQueue<>((o1, o2) -> {
-            if (o1.end == o2.end) {
-                return o1.start - o2.start;
-            }
-            return o1.end - o2.end;
-        });
+        List<Integer> rooms = new ArrayList<>();
 
-        int count = 0;
         while (!pq.isEmpty()) {
-            int end = 0;
-            int size = pq.size();
-            count++;
-            for (int i = 0; i < size; i++) {
-                Meeting meeting = pq.poll();
-
-                if (end <= meeting.start) {
-                    end = meeting.end;
-                } else {
-                    q.add(meeting);
+            Meeting meeting = pq.poll();
+            boolean hasRoom = false;
+            for (int i = 0; i < rooms.size(); i++) {
+                if (rooms.get(i) <= meeting.start) {
+                    rooms.set(i, meeting.end);
+                    hasRoom = true;
+                    break;
                 }
             }
-            pq.addAll(q);
-            q.clear();
+            if (!hasRoom) {
+                rooms.add(meeting.end);
+            }
+            rooms.sort(Integer::compareTo);
         }
 
-        System.out.println(count);
+        System.out.println(rooms.size());
     }
 }
