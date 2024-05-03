@@ -30,14 +30,15 @@ public class Main {
         long answer = 1;
 
         for (int i = 0; i < n; i++) {
-            long maxNum = 0;
             for (int j = 0; j < m; j++) {
                 long gcd = gcd(Math.max(arr[i], arr2[j]), Math.min(arr[i], arr2[j]));
-                if (maxNum < gcd) {
-                    maxNum = gcd;
+                if (gcd == 1) {
+                    continue;
                 }
+                arr[i] /= gcd;
+                arr2[j] /= gcd;
+                answer = (answer * gcd) % div;
             }
-            answer = (answer * maxNum) % div;
         }
 
         System.out.println(answer);
