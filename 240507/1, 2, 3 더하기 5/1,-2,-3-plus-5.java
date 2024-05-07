@@ -1,3 +1,5 @@
+import static java.lang.System.exit;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,6 +23,8 @@ public class Main {
         Node node = new Node(new LinkedList<>());
 
         backtracking(n, node);
+
+        System.out.println(-1);
     }
 
     public static void backtracking(int n, Node node) {
@@ -84,6 +88,7 @@ public class Main {
 
         public void print() {
             System.out.println(list.stream().collect(StringBuilder::new, (sb, i) -> sb.append(i).append("+"), StringBuilder::append).deleteCharAt(list.size() * 2 - 1));
+            exit(0);
         }
     }
 }
