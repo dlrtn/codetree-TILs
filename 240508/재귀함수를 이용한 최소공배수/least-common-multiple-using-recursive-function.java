@@ -1,3 +1,5 @@
+import static java.lang.System.exit;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,11 +21,16 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        if (n == 1) {
+            System.out.println(arr[0]);
+            exit(0);
+        }
+        
         arr = Arrays.stream(arr).sorted().toArray();
 
-        int mul = lcm(arr[0], arr[1]);
+        int mul = lcm(arr[1], arr[0]);
         for (int i = 2; i < n; i++) {
-            mul = lcm(mul, arr[i]);
+            mul = lcm(arr[i], mul);
         }
 
         System.out.println(mul);
