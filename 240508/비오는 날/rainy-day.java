@@ -15,7 +15,6 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         List<WeatherData> arr = new ArrayList<>();
 
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             String date = st.nextToken();
@@ -25,7 +24,38 @@ public class Main {
             arr.add(new WeatherData(date, week, weather));
         }
 
-        arr.stream().filter(WeatherData::isWeatherRain).findFirst().get().print();
+        arr.stream().sorted((o1, o2) -> {
+            String[] o1Date = o1.date.split("-");
+            int o1Year = Integer.parseInt(o1Date[0]);
+            int o1Month = Integer.parseInt(o1Date[1]);
+            int o1Day = Integer.parseInt(o1Date[2]);
+
+            String[] o2Date = o2.date.split("-");
+            int o2Year = Integer.parseInt(o2Date[0]);
+            int o2Month = Integer.parseInt(o2Date[1]);
+            int o2Day = Integer.parseInt(o2Date[2]);
+
+            if (o1Year > o2Year) {
+                return 1;
+            } else if (o1Year < o2Year) {
+                return -1;
+            } else {
+                if (o1Month > o2Month) {
+                    return 1;
+                } else if (o1Month < o2Month) {
+                    return -1;
+                } else {
+                    if (o1Day > o2Day) {
+                        return 1;
+                    }
+                    if (o1Day < o2Day) {
+                        return -1;
+                    }
+                }
+            }
+            return 0;
+
+        }).filter(WeatherData::isWeatherRain).findFirst().ifPresent(WeatherData::print);
     }
 
     public static class WeatherData {
