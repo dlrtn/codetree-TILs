@@ -13,7 +13,7 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
 
         printStar(n);
-        printStar1(1, n);
+        printStar1(0, n);
     }
 
     public static void printStar(int n) {
@@ -22,7 +22,7 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++) {
-            System.out.print("*");
+            System.out.print("* ");
         }
         System.out.println();
 
@@ -34,8 +34,8 @@ public class Main {
             return;
         }
 
-        for (int i = 0; i < depth; i++) {
-            System.out.print("*");
+        for (int i = 0; i <= depth; i++) {
+            System.out.print("* ");
         }
         System.out.println();
 
