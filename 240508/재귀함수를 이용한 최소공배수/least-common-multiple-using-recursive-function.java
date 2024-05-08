@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,15 +19,11 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int mul = 1;
-        for (int i = 0; i < n; i++) {
-            mul *= arr[i];
-        }
+        arr = Arrays.stream(arr).sorted().toArray();
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                mul /= gcd(Math.max(arr[i], arr[j]), Math.min(arr[i], arr[j]));
-            }
+        int mul = lcm(arr[0], arr[1]);
+        for (int i = 2; i < n; i++) {
+            mul = lcm(mul, arr[i]);
         }
 
         System.out.println(mul);
@@ -38,5 +35,9 @@ public class Main {
         }
 
         return gcd(m, n % m);
+    }
+
+    public static int lcm(int n, int m) {
+        return n * m / gcd(n, m);
     }
 }
