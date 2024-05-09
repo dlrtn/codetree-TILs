@@ -21,21 +21,20 @@ public class Main {
             String s = st.nextToken();
 
             if (s.equals("L")) {
-                for (int j = x; j > 0; j--) {
+                for (int j = 0; j < x; j++) {
                     arr[now - j] = -1;
                 }
-                now -= x;
+                now -= x - 1;
             } else {
                 for (int j = 0; j < x; j++) {
                     arr[now + j] = 1;
                 }
-                now += x;
+                now += x - 1;
             }
         }
 
         System.out.print(Arrays.stream(arr).filter((a) -> a == -1).count() + " ");
-        System.out.print(Arrays.stream(arr).filter((a) -> a == 1).count());
-
+        System.out.print(Arrays.stream(arr).filter((a) -> a == 1).count() + "\n");
     }
 
 }
