@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -15,11 +16,12 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
+        String n = st.nextToken();
 
+        int[] arr = Arrays.stream(n.split("")).mapToInt(Integer::parseInt).toArray();
         int num = 0;
-        for (int i = Integer.toString(n).length() - 1; i >= 0; i--) {
-            num += Math.pow(a, i) * Integer.parseInt(String.valueOf(Integer.toString(n).charAt(i)));
+        for (int i = 0; i < arr.length; i++) {
+            num += Math.pow(a, arr.length - i - 1) * arr[i];
         }
 
         StringBuffer sb = new StringBuffer();
