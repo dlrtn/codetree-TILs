@@ -14,6 +14,7 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
 
         int[] arr = new int[201];
+        int now = 100;
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
@@ -21,12 +22,14 @@ public class Main {
 
             if (s.equals("L")) {
                 for (int j = x; j > 0; j--) {
-                    arr[j] = -1;
+                    arr[now - j] = -1;
                 }
+                now -= x;
             } else {
                 for (int j = 0; j < x; j++) {
-                    arr[j] = 1;
+                    arr[now + j] = 1;
                 }
+                now += x;
             }
         }
 
