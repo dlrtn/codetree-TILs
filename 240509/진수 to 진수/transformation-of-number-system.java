@@ -23,7 +23,7 @@ public class Main {
         }
 
         StringBuffer sb = new StringBuffer();
-        int i = 30;
+        int i = 40;
         boolean isZero = true;
         while (num != 0) {
             int now = (int) (num / Math.pow(b, i));
