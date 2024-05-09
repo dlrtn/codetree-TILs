@@ -13,16 +13,18 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[101];
+        int[] arr = new int[201];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             String s = st.nextToken();
 
-            for (int j = 0; j < x; j++) {
-                if (s.equals("L")) {
+            if (s.equals("L")) {
+                for (int j = x; j > 0; j--) {
                     arr[j] = -1;
-                } else  {
+                }
+            } else {
+                for (int j = 0; j < x; j++) {
                     arr[j] = 1;
                 }
             }
