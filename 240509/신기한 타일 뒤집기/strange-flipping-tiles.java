@@ -13,8 +13,8 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[201];
-        int now = 100;
+        int[] arr = new int[200001];
+        int now = 100000;
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
