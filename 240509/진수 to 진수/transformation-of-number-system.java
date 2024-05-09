@@ -23,11 +23,12 @@ public class Main {
         }
 
         StringBuffer sb = new StringBuffer();
-        int i = 40;
+        int i = 30;
         boolean isZero = true;
         while (num != 0) {
             int now = (int) (num / Math.pow(b, i));
-            if (now == 1) {
+
+            if (now != 0) {
                 isZero = false;
                 sb.append(now);
             }
@@ -35,6 +36,10 @@ public class Main {
                 sb.append(now);
             }
             num %= Math.pow(b, i--);
+        }
+
+        if (i != -1) {
+            sb.append(0);
         }
 
         System.out.println(sb);
