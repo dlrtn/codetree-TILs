@@ -22,23 +22,20 @@ public class Main {
         }
 
         int max = Integer.MIN_VALUE;
-        List<Integer> answer = new ArrayList<>();
-
         List<Integer> temp = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if (arr[i] > t) {
                 temp.add(arr[i]);
             } else {
-                if (max < temp.size()) {
-                    max = temp.size();
-                    answer.addAll(temp);
-                }
                 temp.clear();
             }
-            
+            if (max < temp.size()) {
+                max = temp.size();
+            }
+
         }
 
-        System.out.println(answer.size());
+        System.out.println(max);
     }
 
 
