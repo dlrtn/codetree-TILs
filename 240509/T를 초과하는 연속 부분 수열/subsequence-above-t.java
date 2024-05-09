@@ -32,8 +32,8 @@ public class Main {
                 if (max < temp.size()) {
                     max = temp.size();
                     answer.addAll(temp);
-                    temp.clear();
                 }
+                temp.clear();
             }
             
         }
