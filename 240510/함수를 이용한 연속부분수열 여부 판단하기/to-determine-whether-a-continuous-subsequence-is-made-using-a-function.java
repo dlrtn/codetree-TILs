@@ -28,7 +28,7 @@ public class Main {
             arr2[i] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i = 0; i < n1 - n2; i++) {
+        for (int i = 0; i < n1 - n2 + 1; i++) {
             int count = 0;
             for (int j = 0; j < n2; j++) {
                 if (arr1[i + j] == arr2[j]) {
