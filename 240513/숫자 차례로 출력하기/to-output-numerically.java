@@ -29,7 +29,7 @@ public class Main {
             return;
         }
         System.out.print(n + " ");
-        recursive(n - 1);
+        recursivePlus(n - 1);
     }
 
 }
