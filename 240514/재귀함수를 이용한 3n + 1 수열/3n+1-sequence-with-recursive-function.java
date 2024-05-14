@@ -13,7 +13,11 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        System.out.println(recursive(n, 03));
+        if (n == 1) {
+            System.out.println(0);
+            return;
+        } 
+        System.out.println(recursive(n, 0));
     }
 
     private static int recursive(int n, int count) {
@@ -21,7 +25,7 @@ public class Main {
             return count;
         }
 
-        if (n % 2 ==0 ) {
+        if (n % 2 == 0) {
             return recursive(n / 2, count + 1);
         } else {
             return recursive(n * 3 + 1, count + 1);
