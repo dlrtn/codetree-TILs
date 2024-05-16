@@ -27,6 +27,9 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             int tempCount = 0;
+            if (T.length() > words[i].length()) {
+                continue;
+            }
             for (int j = 0; j < T.length(); j++) {
                 if (T.charAt(j) == words[i].charAt(j)) {
                     tempCount++;
