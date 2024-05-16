@@ -15,12 +15,8 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         String s2 = st.nextToken();
 
-        System.out.println(s1);
         s1 = Arrays.stream(s1.split("")).sorted().collect( StringBuilder::new, StringBuilder::append, StringBuilder::append       ).toString();
         s2 = Arrays.stream(s2.split("")).sorted().collect( StringBuilder::new, StringBuilder::append, StringBuilder::append       ).toString();
-
-        System.out.println(s1);
-
 
         if (s1.equals(s2)) {
             System.out.println("Yes");
