@@ -47,11 +47,13 @@ public class Main {
         int b = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
 
-        if (a <= 11 && b <= 11 && c < 11) {
+        int count = (a - 11) * 1440 + (b - 11) * 60 + (c - 11);
+
+        if (count < 0) {
             System.out.println(-1);
             exit(0);
         } else {
-            System.out.println((a - 11) * 1440 + (b - 11) * 60 + (c - 11));
+            System.out.println(count);
         }
     }
 
