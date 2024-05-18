@@ -12,6 +12,11 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
+        if (n == 0) {
+            System.out.println(0);
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
 
         while (n > 0) {
