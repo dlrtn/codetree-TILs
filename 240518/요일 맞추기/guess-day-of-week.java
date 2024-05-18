@@ -59,7 +59,7 @@ public class Main {
 }
 
 enum Week {
-    MON, TUE, WED, THU, FRI, SAT, SUN;
+    Mon, Tue, Wed, Thu, Fri, Sat, Sun;
 
     public static Week getWeek(int day) {
         if (day < 0) {
