@@ -35,6 +35,17 @@ enum month {
     }
 }
 
+enum Week {
+    Mon, Tue, Wed, Thu, Fri, Sat, Sun;
+
+    public static Week getWeek(int day) {
+        while (day < 0) {
+            day += 7;
+        }
+        return Week.values()[day % 7];
+    }
+}
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -47,24 +58,13 @@ public class Main {
         int d2 = Integer.parseInt(st.nextToken());
 
         int count = d2 - d1;
-        for (int i = m1; i < m2; i++) {
+        for (int i = 1; i < m2; i++) {
             count += month.values()[i - 1].getDay();
+        }
+        for (int i = 1; i < m1; i++) {
+            count -= month.values()[i - 1].getDay();
         }
 
         System.out.println(Week.getWeek(count));
-
-
-    }
-
-}
-
-enum Week {
-    Mon, Tue, Wed, Thu, Fri, Sat, Sun;
-
-    public static Week getWeek(int day) {
-        if (day < 0) {
-            day += 7;
-        }
-        return Week.values()[day % 7];
     }
 }
