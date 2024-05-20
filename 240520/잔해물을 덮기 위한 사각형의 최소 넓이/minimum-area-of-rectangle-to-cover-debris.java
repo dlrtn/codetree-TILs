@@ -49,6 +49,11 @@ public class Main {
                 }
             }
         }
+        
+        if (minX == 2001 || minY == 2001 || maxX == 0 || maxY == 0) {
+            System.out.println(0);
+            return;
+        }
 
         System.out.println((maxX - minX) * (maxY - minY));
     }
