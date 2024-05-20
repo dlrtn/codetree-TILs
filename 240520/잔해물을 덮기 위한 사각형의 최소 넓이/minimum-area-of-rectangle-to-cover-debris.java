@@ -26,8 +26,8 @@ public class Main {
                 }
             }
             if (i == 1) {
-                for (int x = x1; x <= x2; x++) {
-                    for (int y = y1; y <= y2; y++) {
+                for (int x = x1; x < x2; x++) {
+                    for (int y = y1; y < y2; y++) {
                         arr[x][y] = 0;
                     }
                 }
@@ -49,7 +49,6 @@ public class Main {
                 }
             }
         }
-        
         if (minX == 2001 || minY == 2001 || maxX == 0 || maxY == 0) {
             System.out.println(0);
             return;
