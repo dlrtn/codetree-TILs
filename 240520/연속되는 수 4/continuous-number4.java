@@ -10,10 +10,11 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        int temp = 0;
+        st = new StringTokenizer(br.readLine());
+        int temp = Integer.parseInt(st.nextToken());
         int count = 1;
-        int answer = 0;
-        for (int i = 0; i < n; i++) {
+        int answer = 1;
+        for (int i = 0; i < n - 1; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
 
@@ -25,7 +26,6 @@ public class Main {
                 count = 1;
             }
             temp = a;
-
         }
 
         System.out.println(answer);
