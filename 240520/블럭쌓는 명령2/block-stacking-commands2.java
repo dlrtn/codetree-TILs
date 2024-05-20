@@ -22,7 +22,7 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             for (int j = a; j <= b; j++) {
-                arr[j] += 1;
+                arr[j - 1] += 1;
             }
         }
 
