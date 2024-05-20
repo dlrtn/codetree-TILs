@@ -19,6 +19,7 @@ public class Main {
 
             if (temp == a) {
                 count++;
+                answer = Math.max(answer, count);
             } else {
                 answer = Math.max(answer, count);
                 count = 1;
