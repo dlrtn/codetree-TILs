@@ -21,7 +21,7 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             for (int j = a; j < b; j++) {
-                arr[100 + j - 1] += 1;
+                arr[101 + j - 1] += 1;
             }
         }
 
