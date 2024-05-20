@@ -1,55 +1,59 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
-public class Main {
+public class Main {    
+    public static final int OFFSET = 1000;
+    public static final int MAX_R = 2000;
+    public static final int MAX_N = 100;
+    
+    public static int n;
+    public static int[] x1 = new int[MAX_N];
+    public static int[] x2 = new int[MAX_N];
+    
+    public static int[] checked = new int[MAX_R + 1];
 
-    public static int[] arr;
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        int n = Integer.parseInt(st.nextToken());
-
-        int[] arr = new int[2001];
-
-        int start = 1000;
-
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            String D = st.nextToken();
-
-            if (D.equals("R")) {
-                for (int j = 0; j <= x; j++) {
-                    arr[start + j]++;
-                }
-                start += x;
-            } else {
-                for (int j = 0; j <= x; j++) {
-                    arr[start - j]++;
-                }
-                start -= x;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // 입력
+        n = sc.nextInt();
+        
+        // 현재 위치
+        int cur = 0;
+        
+        for(int i = 0; i < n; i++) {
+            int distance = sc.nextInt();
+            char direction = sc.next().charAt(0);
+            
+            if(direction == 'L') {
+                // 왼쪽으로 이동할 경우 : cur - distance ~ cur까지 경로 이동
+                x1[i] = cur - distance;
+                x2[i] = cur;
+                cur -= distance;
             }
-            System.out.println(start);
-        }
-
-        int count = 0;
-        boolean flag = false;
-        for (int i = 0; i < 2001; i++) {
-            if (arr[i] == 0) {
-            } else if (arr[i] >= 2 && !flag) {
-                // 구간 시작
-                flag = true;
-                count++;
-            } else if (flag && arr[i] < 2) {
-                flag = false;
+            else {
+                // 오른쪽으로 이동할 경우 : cur ~ cur + distance까지 경로 이동
+                x1[i] = cur;
+                x2[i] = cur + distance;
+                cur += distance;
             }
+            
+            // OFFSET을 더해줍니다.
+            x1[i] += OFFSET;
+            x2[i] += OFFSET;
         }
-
-        System.out.println(Arrays.stream(arr).filter(i -> i >= 2).count() - count);
+        
+        // 구간을 칠해줍니다.
+        // 구간 단위로 진행하는 문제이므로
+        // x2[i]에 등호가 들어가지 않음에 유의합니다.
+        for(int i = 0; i < n; i++)
+            for(int j = x1[i]; j < x2[i]; j++)
+                checked[j]++;
+        
+        // 2번 이상 지나간 영역의 크기를 구합니다.
+        int cnt = 0;
+        for(int i = 0; i <= MAX_R; i++)
+            if(checked[i] >= 2)
+                cnt++;
+        
+        System.out.print(cnt);
     }
 }
