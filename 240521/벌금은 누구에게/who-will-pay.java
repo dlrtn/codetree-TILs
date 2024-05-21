@@ -22,11 +22,9 @@ public class Main {
 
             int a = Integer.parseInt(st.nextToken());
             arr[a-1]++;
-        }
 
-        for (int i = 0; i < n; i++) {
-            if (arr[i] >= k) {
-                System.out.println(i+1);
+            if (arr[a-1] >= k) {
+                System.out.println(a);
                 exit(0);
             }
         }
