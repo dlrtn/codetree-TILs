@@ -31,16 +31,16 @@ public class Main {
                     c++;
                 }
             } else if (d.equals("U")) {
-                if (r == n) {
+                if (r == 1) {
                     d = "D";
                 } else {
-                    r++;
+                    r--;
                 }
             } else if (d.equals("D")) {
-                if (r - 1 == 0) {
+                if (r == n) {
                     d = "U";
                 } else {
-                    r--;
+                    r++;
                 }
             }
         }
