@@ -14,8 +14,8 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        int[] a = new int[1001];
-        int[] b = new int[1001];
+        int[] a = new int[1000001];
+        int[] b = new int[1000001];
 
         int aStart = 1;
         int bStart = 1;
@@ -61,5 +61,5 @@ public class Main {
         }
         System.out.println(-1);
     }
-    
+
 }
