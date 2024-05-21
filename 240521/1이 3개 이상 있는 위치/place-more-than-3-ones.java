@@ -26,13 +26,19 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 int count = 0;
-                for (int k = 0; k < 4; k++) {
-                    if (i + dx[k] >= 0 && i + dx[k] < n && j + dy[k] >= 0 && j + dy[k] < n) {
-                        if (arr[i][j] > arr[i + dx[k]][j + dy[k]]) {
-                            count++;
-                        }
-                    }
+                if (i > 0 && arr[i - 1][j] == 1) {
+                    count++;
                 }
+                if (i < n - 1 && arr[i + 1][j] == 1) {
+                    count++;
+                }
+                if (j > 0 && arr[i][j - 1] == 1) {
+                    count++;
+                }
+                if (j < n - 1 && arr[i][j + 1] == 1) {
+                    count++;
+                }
+
                 if (count >= 3) {
                     answerCount++;
                 }
