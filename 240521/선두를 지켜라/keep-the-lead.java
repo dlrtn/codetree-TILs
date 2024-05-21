@@ -42,17 +42,21 @@ public class Main {
             }
         }
 
-        boolean isAFaster = false;
+        String now = "none";
 
         int count = 0;
 
         for (int i = 0; i < 1000001; i++) {
-            if (aArr[i] > bArr[i] && !isAFaster) {
-                count++;
-                isAFaster = true;
-            } else if (aArr[i] < bArr[i] && isAFaster) {
-                count++;
-                isAFaster = false;
+            if (aArr[i] > bArr[i] && !now.equals("a")) {
+                if (now.equals("b")) {
+                    count++;
+                }
+                now = "a";
+            } else if (aArr[i] < bArr[i] && !now.equals("b")) {
+                if (now.equals("a")) {
+                    count++;
+                }
+                now = "b";
             }
         }
 
