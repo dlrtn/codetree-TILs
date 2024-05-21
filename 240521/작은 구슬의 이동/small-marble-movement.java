@@ -25,22 +25,22 @@ public class Main {
                     c--;
                 }
             } else if (d.equals("R")) {
-                if (c + 1 == n) {
+                if (c == n) {
                     d = "L";
                 } else {
                     c++;
                 }
             } else if (d.equals("U")) {
-                if (r - 1 == 0) {
+                if (r == n) {
                     d = "D";
                 } else {
-                    r--;
+                    r++;
                 }
             } else if (d.equals("D")) {
-                if (r + 1 == n) {
+                if (r - 1 == 0) {
                     d = "U";
                 } else {
-                    r++;
+                    r--;
                 }
             }
         }
