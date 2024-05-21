@@ -53,7 +53,7 @@ public class Main {
 
         }
 
-        for (int i = 1; i < 1001; i++) {
+        for (int i = 1; i < Math.max(aStart, bStart); i++) {
             if (a[i] == b[i]) {
                 System.out.println(i);
                 exit(0);
@@ -61,6 +61,5 @@ public class Main {
         }
         System.out.println(-1);
     }
-
-
+    
 }
