@@ -57,20 +57,20 @@ public class Main {
         }
 
         while (true) {
-            count++;
             if (i < 0 || i >= n || j < 0 || j >= n) {
                 break;
             }
+            count++;
 
             if (arr[i][j].equals("/")) {
                 if (direction == 0) {
-                    direction = 3;
-                } else if (direction == 1) {
                     direction = 2;
                 } else if (direction == 2) {
-                    direction = 1;
-                } else if (direction == 3) {
                     direction = 0;
+                } else if (direction == 1) {
+                    direction = 3;
+                } else if (direction == 3) {
+                    direction = 1;
                 }
             } else if (arr[i][j].equals("\\")) {
                 if (direction == 0) {
