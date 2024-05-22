@@ -23,10 +23,16 @@ public class Main {
         int y = 0;
         int dir = 0;
 
-        while (num < n * m + 65) {
-            answer[x][y] = (char) num++;
+        for (int i = 0; i < n * m; i++) {
+            answer[x][y] = (char) num;
+            num++;
+            if (num >= 91) {
+                num %= 91;
+                num += 65;
+            }
 
-            if (x + dx[dir] < 0 || x + dx[dir] >= n || y + dy[dir] < 0 || y + dy[dir] >= m || answer[x + dx[dir]][y + dy[dir]] != 0) {
+            if (x + dx[dir] < 0 || x + dx[dir] >= n || y + dy[dir] < 0 || y + dy[dir] >= m
+                    || answer[x + dx[dir]][y + dy[dir]] != 0) {
                 dir = (dir + 1) % 4;
             }
 
