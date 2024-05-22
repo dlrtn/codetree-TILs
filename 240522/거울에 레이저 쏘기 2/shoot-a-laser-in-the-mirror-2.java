@@ -60,7 +60,6 @@ public class Main {
             if (i < 0 || i >= n || j < 0 || j >= n) {
                 break;
             }
-            System.out.println(i + " " + j + " " + arr[i][j]);
             count++;
 
             if (arr[i][j].equals("/")) {
@@ -86,7 +85,6 @@ public class Main {
             }
             i += dy[direction];
             j += dx[direction];
-            System.out.println(i + " " + j + " " + direction);
         }
 
         System.out.println(count);
