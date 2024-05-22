@@ -21,10 +21,10 @@ public class Main {
             }
         }
 
-        int count = 1;
+        int count = 0;
 
         int[] dx = {0, 0, 1, -1};
-        int[] dy = {1, -1, 0, 0};
+        int[] dy = {-1, 1, 0, 0};
 
         st = new StringTokenizer(br.readLine());
         int start = Integer.parseInt(st.nextToken());
@@ -35,7 +35,7 @@ public class Main {
         int j = 0;
         switch (start / n) {
             case 0:
-                direction = 0;
+                direction = 1;
                 i = 0;
                 j = start;
                 break;
@@ -45,7 +45,7 @@ public class Main {
                 j = n - 1;
                 break;
             case 2:
-                direction = 1;
+                direction = 0;
                 i = n - 1;
                 j = start % n;
                 break;
@@ -60,6 +60,7 @@ public class Main {
             if (i < 0 || i >= n || j < 0 || j >= n) {
                 break;
             }
+            System.out.println(i + " " + j + " " + arr[i][j]);
             count++;
 
             if (arr[i][j].equals("/")) {
@@ -83,8 +84,9 @@ public class Main {
                     direction = 0;
                 }
             }
-            i += dx[direction];
-            j += dy[direction];
+            i += dy[direction];
+            j += dx[direction];
+            System.out.println(i + " " + j + " " + direction);
         }
 
         System.out.println(count);
