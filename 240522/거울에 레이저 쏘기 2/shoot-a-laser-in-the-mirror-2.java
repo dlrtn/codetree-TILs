@@ -57,14 +57,12 @@ public class Main {
         }
 
         while (true) {
+            count++;
             if (i < 0 || i >= n || j < 0 || j >= n) {
                 break;
             }
 
             if (arr[i][j].equals("/")) {
-                i += dx[direction];
-                j += dy[direction];
-
                 if (direction == 0) {
                     direction = 3;
                 } else if (direction == 1) {
@@ -75,9 +73,6 @@ public class Main {
                     direction = 0;
                 }
             } else if (arr[i][j].equals("\\")) {
-                i -= dx[direction];
-                j -= dy[direction];
-
                 if (direction == 0) {
                     direction = 3;
                 } else if (direction == 1) {
@@ -88,7 +83,8 @@ public class Main {
                     direction = 0;
                 }
             }
-            count++;
+            i += dx[direction];
+            j += dy[direction];
         }
 
         System.out.println(count);
