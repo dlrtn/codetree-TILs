@@ -41,7 +41,7 @@ public class Main {
                 break;
             case 1:
                 direction = 3;
-                i = n + 1 % n;
+                i = (n + 1) % n;
                 j = n - 1;
                 break;
             case 2:
@@ -55,7 +55,6 @@ public class Main {
                 j = n - 1 - start % n;
                 break;
         }
-
         while (true) {
             if (i < 0 || i >= n || j < 0 || j >= n) {
                 break;
