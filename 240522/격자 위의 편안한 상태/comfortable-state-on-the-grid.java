@@ -39,7 +39,7 @@ public class Main {
                 count++;
             }
 
-            if (count >= 3) {
+            if (count == 3) {
                 System.out.println(1);
             } else {
                 System.out.println(0);
