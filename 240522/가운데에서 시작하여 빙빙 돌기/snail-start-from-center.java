@@ -1,3 +1,5 @@
+import static java.lang.System.exit;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +24,7 @@ public class Main {
 
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= n - 1; i++) {
-            if (i != n - 1 && i != 1) {
+            if (i != n - 1) {
                 queue.add(i);
                 queue.add(i);
             } else {
@@ -35,7 +37,7 @@ public class Main {
         int x = n / 2;
         int y = n / 2;
 
-        int count = queue.poll();
+        int count = 1;
         for (int i = 0; i < n * n; i++) {
             answer[x][y] = num++;
 
