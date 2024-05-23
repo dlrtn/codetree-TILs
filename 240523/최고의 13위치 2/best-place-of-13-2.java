@@ -30,7 +30,7 @@ public class Main {
                 }
                 for (int k = i; k < n; k++) {
                     for (int l = j; l < n - 2; l++) {
-                        if (i == k && l < j + 2) {
+                        if (i == k && l <= j + 2) {
                             continue;
                         }
                         int tempCount2 = 0;
