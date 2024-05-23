@@ -40,7 +40,11 @@ public class Main {
             }
         }
 
-        System.out.println(count);
+        if (count == 0) {
+            System.out.println(-1);
+        } else {
+            System.out.println(count);
+        }
     }
 
     public static boolean isCarry(int a, int b, int c) {
