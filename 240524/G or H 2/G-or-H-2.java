@@ -27,6 +27,7 @@ public class Main {
         });
 
         int answer = 0;
+
         for (int j = 1; j < signs.size(); j++) {
             for (int i = 0; i < signs.size() - j; i++) {
                 int gCount = 0;
@@ -41,8 +42,13 @@ public class Main {
                 if (gCount == hCount) {
                     answer = Math.max(answer, signs.get(i + j).index - signs.get(i).index);
                 }
+                if (gCount == 0) {
+                    answer = Math.max(answer, signs.get(i + j).index - signs.get(i).index);
+                }
+                if (hCount == 0) {
+                    answer = Math.max(answer, signs.get(i + j).index - signs.get(i).index);
+                }
             }
-
         }
 
         System.out.println(answer);
