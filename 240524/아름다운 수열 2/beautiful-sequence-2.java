@@ -32,7 +32,6 @@ public class Main {
             }
             if (numberCount.equals(tempNumberCount)) {
                 count++;
-                break;
             }
         }
 
