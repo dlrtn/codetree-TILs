@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -42,76 +44,31 @@ public class Main {
 
     public static class NumberCount {
 
-        int zeroCount;
-        int oneCount;
-        int twoCount;
-        int threeCount;
-        int fourCount;
-        int fiveCount;
-        int sixCount;
-        int sevenCount;
-        int eightCount;
-        int nineCount;
+        public Map<Integer, Integer> map;
 
         public NumberCount() {
-            this.zeroCount = 0;
-            this.oneCount = 0;
-            this.twoCount = 0;
-            this.threeCount = 0;
-            this.fourCount = 0;
-            this.fiveCount = 0;
-            this.sixCount = 0;
-            this.sevenCount = 0;
-            this.eightCount = 0;
-            this.nineCount = 0;
+            this.map = new HashMap<>();
         }
 
         public void add(int num) {
-            switch (num) {
-                case 0:
-                    zeroCount++;
-                    break;
-                case 1:
-                    oneCount++;
-                    break;
-                case 2:
-                    twoCount++;
-                    break;
-                case 3:
-                    threeCount++;
-                    break;
-                case 4:
-                    fourCount++;
-                    break;
-                case 5:
-                    fiveCount++;
-                    break;
-                case 6:
-                    sixCount++;
-                    break;
-                case 7:
-                    sevenCount++;
-                    break;
-                case 8:
-                    eightCount++;
-                    break;
-                case 9:
-                    nineCount++;
-                    break;
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
+            } else {
+                map.put(num, 1);
             }
         }
 
+
         public boolean equals(NumberCount numberCount) {
-            return this.zeroCount == numberCount.zeroCount &&
-                    this.oneCount == numberCount.oneCount &&
-                    this.twoCount == numberCount.twoCount &&
-                    this.threeCount == numberCount.threeCount &&
-                    this.fourCount == numberCount.fourCount &&
-                    this.fiveCount == numberCount.fiveCount &&
-                    this.sixCount == numberCount.sixCount &&
-                    this.sevenCount == numberCount.sevenCount &&
-                    this.eightCount == numberCount.eightCount &&
-                    this.nineCount == numberCount.nineCount;
+            for (int key : map.keySet()) {
+                if (!numberCount.map.containsKey(key)) {
+                    return false;
+                }
+                if (!map.get(key).equals(numberCount.map.get(key))) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
