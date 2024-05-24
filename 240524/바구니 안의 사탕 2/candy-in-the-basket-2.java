@@ -24,9 +24,9 @@ public class Main {
         }
 
         int count = 0;
-        for (int i = 0; i <= 100 - 2 * k; i++) {
+        for (int i = 0; i < (100 - (2 * k) < 0 ? 1 : 100 - (2 * k)); i++) {
             int sum = 0;
-            for (int j = i; j <= i + 2 * k; j++) {
+            for (int j = i; j <= (i + 2 * k > 100 ? 100 : i + 2 * k); j++) {
                 sum += arr[j];
             }
             count = Math.max(count, sum);
