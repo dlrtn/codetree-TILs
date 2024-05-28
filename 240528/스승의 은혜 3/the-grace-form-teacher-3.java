@@ -32,10 +32,9 @@ public class Main {
             infos[i].p /= 2;
             Info[] temps = Arrays.stream(infos).sorted(Comparator.comparingInt(o -> o.p + o.s))
                     .toArray(Info[]::new);
-
             for (int j = 0; j < n; j++) {
 
-                if (temps[i].p + temps[i].s + sum <= b) {
+                if (temps[j].p + temps[j].s + sum <= b) {
                     sum += temps[j].p + temps[j].s;
                     count++;
 
