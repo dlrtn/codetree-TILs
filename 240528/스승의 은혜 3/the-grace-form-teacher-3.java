@@ -24,26 +24,29 @@ public class Main {
             infos[i] = new Info(p, s);
         }
 
-        Arrays.sort(infos, Comparator.comparingInt(o -> (o.p + o.s)));
 
 
         int answer = 0;
         for (int i = 0; i < n; i++) {
+            infos[i].p /= 2;
+            Info[] temp = Arrays.stream(infos).sorted(Comparator.comparingInt(o -> o.p + o.s)).toArray(Info[]::new);
+            infos[i].p *= 2;
             int sum = 0;
             int count = 0;
             for (int j = 0; j < n; j++) {
                 if (i == j) {
-                    if (infos[i].p / 2 + infos[i].s + sum <= b) {
-                        sum += infos[j].p / 2 + infos[j].s;
+                    if (temp[i].p / 2 + temp[i].s + sum <= b) {
+                        sum += temp[j].p / 2 + temp[j].s;
                         count++;
                     }
                 } else {
-                    if (infos[i].p + infos[i].s + sum <= b) {
-                        sum += infos[j].p + infos[j].s;
+                    if (temp[i].p + temp[i].s + sum <= b) {
+                        sum += temp[j].p + temp[j].s;
                         count++;
                     }
                 }
             }
+
 
             answer = Math.max(answer, count);
         }
