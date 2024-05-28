@@ -24,30 +24,25 @@ public class Main {
             infos[i] = new Info(p, s);
         }
 
-
-
         int answer = 0;
         for (int i = 0; i < n; i++) {
-            infos[i].p /= 2;
-            Info[] temp = Arrays.stream(infos).sorted(Comparator.comparingInt(o -> o.p + o.s)).toArray(Info[]::new);
-            infos[i].p *= 2;
             int sum = 0;
             int count = 0;
+
+            infos[i].p /= 2;
+            Info[] temps = Arrays.stream(infos).sorted(Comparator.comparingInt(o -> o.p + o.s))
+                    .toArray(Info[]::new);
+
             for (int j = 0; j < n; j++) {
-                if (i == j) {
-                    if (temp[i].p / 2 + temp[i].s + sum <= b) {
-                        sum += temp[j].p / 2 + temp[j].s;
-                        count++;
-                    }
-                } else {
-                    if (temp[i].p + temp[i].s + sum <= b) {
-                        sum += temp[j].p + temp[j].s;
-                        count++;
-                    }
+
+                if (temps[i].p + temps[i].s + sum <= b) {
+                    sum += temps[j].p + temps[j].s;
+                    count++;
+
                 }
             }
 
-
+            infos[i].p *= 2;
             answer = Math.max(answer, count);
         }
 
@@ -55,6 +50,7 @@ public class Main {
     }
 
     public static class Info {
+
         public int p;
         public int s;
 
