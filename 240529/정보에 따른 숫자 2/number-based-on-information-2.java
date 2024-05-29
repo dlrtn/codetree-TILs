@@ -34,15 +34,17 @@ public class Main {
         for (int i = a; i <= b; i++) {
             int minD1 = Integer.MAX_VALUE;
             for (Integer s : sArr) {
-                minD1 = Math.min(minD1, Math.abs(a + i - s));
+                minD1 = Math.min(minD1, Math.abs(s - i));
             }
 
             int minD2 = Integer.MAX_VALUE;
             for (Integer n : nArr) {
-                minD2 = Math.min(minD2, Math.abs(a + i - n));
+                minD2 = Math.min(minD2, Math.abs(n - i));
             }
 
+
             if (minD1 <= minD2) {
+                System.out.println(i + " " + minD1 + " " + minD2);
                 answer++;
             }
 
