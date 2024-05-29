@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -19,19 +18,20 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        arr = Arrays.stream(arr).sorted().toArray();
-
-        int count = 0;
-        for (int i = 1; i <= 100; i++) {
+        int answer = 0;
+        for (int i = 0; i <= 100; i++) {
+            int count = 0;
             for (int j = 0; j < n; j++) {
                 for (int k = j + 1; k < n; k++) {
-                    if (Math.abs(arr[j] - i) == Math.abs(arr[k] - i)) {
+                    if (i - arr[j] == arr[k] - i) {
                         count++;
                     }
                 }
             }
+
+            answer = Math.max(answer, count);
         }
 
-        System.out.println(count);
+        System.out.println(answer);
     }
 }
