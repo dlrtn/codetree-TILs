@@ -44,7 +44,6 @@ public class Main {
 
 
             if (minD1 <= minD2) {
-                System.out.println(i + " " + minD1 + " " + minD2);
                 answer++;
             }
 
