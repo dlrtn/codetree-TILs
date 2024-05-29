@@ -14,6 +14,7 @@ public class Main {
         int[] heights = new int[n];
         int maxHeight = 0;
         int minHeight = Integer.MAX_VALUE;
+
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
 
@@ -21,8 +22,9 @@ public class Main {
             maxHeight = Math.max(maxHeight, heights[i]);
             minHeight = Math.min(minHeight, heights[i]);
         }
+
         int answer = 0;
-        for (int i = minHeight; i <= maxHeight; i++) {
+        for (int i = 0; i < maxHeight; i++) {
             int[] arr = new int[n];
             for (int j = 0; j < n; j++) {
                 arr[j] = heights[j] - i;
@@ -42,7 +44,7 @@ public class Main {
             if (arr[i] > 0 && !isIceberg) {
                 isIceberg = true;
                 count++;
-            } else if (arr[i] == 0 && isIceberg) {
+            } else if (arr[i] <= 0 && isIceberg) {
                 isIceberg = false;
             }
         }
