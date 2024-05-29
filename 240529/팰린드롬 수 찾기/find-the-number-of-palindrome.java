@@ -23,19 +23,18 @@ public class Main {
     }
 
     public static boolean isPalindrome(int num) {
-        String str = String.valueOf(num);
-        String[] arr = str.split("");
-        String[] reverseArr = new String[arr.length];
+        String s = String.valueOf(num);
+        int i = 0;
+        int j = s.length() - 1;
 
-        for (int i = 0; i < arr.length; i++) {
-            reverseArr[i] = arr[arr.length - 1 - i];
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            if (!arr[i].equals(reverseArr[i])) {
+        while (i < j) {
+            if (s.charAt(i) != s.charAt(j)) {
                 return false;
             }
+            i++;
+            j--;
         }
+
         return true;
     }
 }
