@@ -15,19 +15,15 @@ public class Main {
         int b = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
 
-        backtracking(a, b, c, 0);
-
-        System.out.println(sum1);
-    }
-
-    public static void backtracking(int a, int b, int c, int sum) {
-        if (sum + a > c || sum + b > c) {
-            sum1 = Math.max(sum1, sum);
-
-            return;
+        int max = 0;
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1000; j++) {
+                if (a * i + b * j < c) {
+                    max = Math.max(max, a * i + b * j);
+                }
+            }
         }
 
-        backtracking(a, b, c, sum + a);
-        backtracking(a, b, c, sum + b);
+        System.out.println(max);
     }
 }
