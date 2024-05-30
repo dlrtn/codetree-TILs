@@ -18,7 +18,7 @@ public class Main {
         int max = 0;
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
-                if (a * i + b * j < c) {
+                if (a * i + b * j <= c) {
                     max = Math.max(max, a * i + b * j);
                 }
             }
