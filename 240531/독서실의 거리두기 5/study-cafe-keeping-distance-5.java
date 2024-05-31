@@ -20,12 +20,14 @@ public class Main {
                 int minDistance = Integer.MAX_VALUE;
                 String str = s.substring(0, i) + "1" + s.substring(i + 1);
 
+                int first = str.indexOf("1");
+
                 // 처음부터 끝까지 떨어진 사람들의 거리를 구한다.
                 int distance = 0;
                 for (int j = 0; j < n; j++) {
                     // distance == 0인 경우는 붙어 있다.
                     if (str.charAt(j) == '1') {
-                        if (j == 0) {
+                        if (j == first) {
                             continue;
                         }
                         minDistance = Math.min(minDistance, distance);
