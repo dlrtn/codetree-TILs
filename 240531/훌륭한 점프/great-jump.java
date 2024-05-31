@@ -34,12 +34,16 @@ public class Main {
                     }
                 } else {
                     count = 0;
+                    isContinue = false;
                 }
                 max = Math.max(max, count);
             }
 
-            if (k <= max) {
+            if (k == max) {
                 System.out.println(i);
+                break;
+            } else if (k < max) {
+                System.out.println(i + 1);
                 break;
             }
 
