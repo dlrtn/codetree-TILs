@@ -21,12 +21,9 @@ public class Main {
                 String str = s.substring(0, i) + "1" + s.substring(i + 1);
                 int first = str.indexOf("1");
 
-                System.out.println(str);
-
                 // 처음부터 끝까지 떨어진 사람들의 거리를 구한다.
                 int distance = 0;
                 for (int j = 0; j < n; j++) {
-                    System.out.println(str.charAt(j) + " " + distance + " " + minDistance + " ");
                     // distance == 0인 경우는 붙어 있다.
                     if (str.charAt(j) == '1') {
                         if (j == first) {
@@ -39,7 +36,6 @@ public class Main {
                         distance++;
                     }
                 }
-                System.out.println(minDistance);
 
                 answer = Math.max(answer, minDistance);
             }
