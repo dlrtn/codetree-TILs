@@ -21,7 +21,6 @@ public class Main {
                 if (s.charAt(i) == '0' && s.charAt(j) == '0') {
                     int minDistance = Integer.MAX_VALUE;
                     String str = s.substring(0, i) + "1" + s.substring(i + 1, j) + "1" + s.substring(j + 1);
-                    System.out.println(str);
                     int first = str.indexOf("1");
 
                     // 처음부터 끝까지 떨어진 사람들의 거리를 구한다.
