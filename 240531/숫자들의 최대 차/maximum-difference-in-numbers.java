@@ -26,7 +26,7 @@ public class Main {
                 int diff = arr[j + i] - arr[j];
 
                 if (diff <= k) {
-                    answer = Math.max(answer, diff + 1);
+                answer = Math.max(answer, i + 1);
                 }
             }
         }
