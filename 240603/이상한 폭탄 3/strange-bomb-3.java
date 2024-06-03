@@ -1,13 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    public static Map<Integer, Integer> map = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,25 +15,32 @@ public class Main {
 
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
+            st = new StringTokenizer(br.readLine());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        boolean[] arr2 = new boolean[n];
+        int[] arr1 = new int[10000001];
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (arr[i] == arr[j] && j - i <= k) {
-                    if (!map.containsKey(arr[i])) {
-                        map.put(arr[i], 1);
-                    } else {
-                        map.put(arr[i], map.get(arr[i]) + 1);
-                    }
+                    arr2[i] = true;
+                    arr2[j] = true;
                 }
             }
         }
 
+        for (int i = 0; i < n; i++) {
+            if (arr2[i]) {
+                arr1[arr[i]]++;
+            }
+        }
+
         int answer = 0;
-        for (int i : map.keySet()) {
-            if (answer <= map.get(i)) {
-                answer = Math.max(answer, i);
+        int max = Arrays.stream(arr1).max().getAsInt();
+        for (int i = 0; i < 1000001; i++) {
+            if (max == arr1[i] && max != 0) {
+                answer = i;
             }
         }
 
