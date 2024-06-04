@@ -14,13 +14,9 @@ public class Main {
             x[i] = Integer.parseInt(st.nextToken());
         }
 
-        boolean isAscending = false;
-        for (int i = 0; i < 4; i++) {
-            for (int j = i + 1; j < 4; j++) {
-                if (x[i] >= x[j]) {
-                    isAscending = true;
-                }
-            }
+        boolean isAscending = true;
+        if (x[1] < x[2] || x[3] < x[0]) {
+            isAscending = false;
         }
 
         if (isAscending) {
