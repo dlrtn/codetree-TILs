@@ -38,7 +38,16 @@ public class Main {
             return;
         }
 
-        for (int i = p - 1; i < m; i++) {
+        int start = 0;
+        for (int i = 0; i < m; i++) {
+            if (chattingLogs.get(i).unreadCount == chattingLogs.get(p - 1).unreadCount) {
+                start = i;
+                break;
+            }
+
+        }
+
+        for (int i = start; i < m; i++) {
             readMap.put(chattingLogs.get(i).name, true);
         }
 
