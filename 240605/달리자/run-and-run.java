@@ -36,10 +36,12 @@ public class Main {
                         diff[i]++;
                         diff[j]--;
                         sum += Math.abs(i - j);
+                        break;
                     } else if(diff[i] > 0 && diff[j] < 0) {
                         diff[i]--;
                         diff[j]++;
                         sum += Math.abs(i - j);
+                        break;
                     }
                 }
             }
