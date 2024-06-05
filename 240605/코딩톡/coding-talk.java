@@ -34,6 +34,10 @@ public class Main {
             readMap.put(c, false);
         }
 
+        if (chattingLogs.get(p - 1).unreadCount == 0) {
+            return;
+        }
+
         for (int i = p - 1; i < m; i++) {
             readMap.put(chattingLogs.get(i).name, true);
         }
