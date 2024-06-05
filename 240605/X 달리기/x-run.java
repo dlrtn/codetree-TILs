@@ -2,9 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -24,20 +22,26 @@ public class Main {
         }
 
         int count = 0;
-        while (x != 0) {
-            for (int i = 100; i > 0; i--) {
-                if (x >= distances.get(i - 1).distance) {
-                    x -= distances.get(i - 1).distance;
-                    count += distances.get(i - 1).time;
-                    break;
-                }
+        int maximumSpeed = 0;
+
+        for (int i = 100; i > 0; i--) {
+            if (x >= distances.get(i - 1).distance) {
+                x -= distances.get(i - 1).distance;
+                count += distances.get(i - 1).time;
+                maximumSpeed = i;
+                break;
             }
         }
 
+        for (int i = maximumSpeed; i > 0; i--) {
+            count += x / i;
+            x %= i;
+        }
         System.out.println(count);
     }
 
     static class Distance {
+
         int distance;
         int time;
 
