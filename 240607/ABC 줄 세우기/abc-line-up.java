@@ -5,6 +5,8 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+    public static int count = 0;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -19,15 +21,16 @@ public class Main {
 
         int count = 0;
         for (int i = 0; i < n; i++) {
-            if (arr[i] != 'A' + i) {
-                count++;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] > arr[j]) {
+                    char temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    count++;
+                }
             }
         }
 
-        if (count == 0) {
-            System.out.println(0);
-            return;
-        }
-        System.out.println(count - 1);
+        System.out.println(count);
     }
 }
