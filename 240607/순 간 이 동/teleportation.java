@@ -14,7 +14,7 @@ public class Main {
         int x = Integer.parseInt(st.nextToken());
         int y = Integer.parseInt(st.nextToken());
 
-        int firstCount = B - A;
+        int firstCount = Math.abs(B - A);
         int secondCount = Math.abs(A - x) + Math.abs(B - y);
         int thirdCount = Math.abs(A - y) + Math.abs(B - x);
 
