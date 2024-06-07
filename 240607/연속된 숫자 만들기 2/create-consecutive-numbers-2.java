@@ -25,6 +25,8 @@ public class Main {
 
         if (answer > 2) {
             System.out.println(2);
+        } else if (answer == 1) {
+            System.out.println(0);
         } else {
             System.out.println(1);
         }
