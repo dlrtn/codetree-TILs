@@ -13,6 +13,20 @@ public class Main {
         int y = Integer.parseInt(st.nextToken());
         int z = Integer.parseInt(st.nextToken());
 
-        System.out.println(Math.min(Math.abs(x - y), Math.abs(y - z)) - 1);
+        int answer = 0;
+
+        if (Math.abs(x - y) == 1) {
+            answer = Math.abs(y - z);
+        } else if (Math.abs(y - z) == 1) {
+            answer = Math.abs(x - y);
+        } else {
+            answer = Math.min(Math.abs(x - y), Math.abs(y - z));
+        }
+
+        if (answer > 2) {
+            System.out.println(2);
+        } else {
+            System.out.println(1);
+        }
     }
 }
