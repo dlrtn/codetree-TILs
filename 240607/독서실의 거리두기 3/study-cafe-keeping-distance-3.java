@@ -21,17 +21,19 @@ public class Main {
         }
 
         int maxDistance = 0;
+        int minDistance = Integer.MAX_VALUE;
         for (int i = 0; i < humans.length; i++) {
             if (humans[i]) {
                 for (int j = i + 1; j < humans.length; j++) {
                     if (humans[j]) {
                         maxDistance = Math.max(maxDistance, j - i);
+                        minDistance = Math.min(minDistance, j - i);
                         break;
                     }
                 }
             }
         }
 
-        System.out.println(maxDistance / 2);
+        System.out.println(Math.min(maxDistance / 2, minDistance));
     }
 }
