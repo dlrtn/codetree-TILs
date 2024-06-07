@@ -24,6 +24,10 @@ public class Main {
             }
         }
 
+        if (count == 0) {
+            System.out.println(0);
+            return;
+        }
         System.out.println(count - 1);
     }
 }
