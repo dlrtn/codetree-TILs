@@ -27,7 +27,7 @@ public class Main {
         }
         int secondMin = Arrays.stream(arr).filter(i -> i != min).min().getAsInt();
 
-        if (Arrays.stream(arr).filter(i -> i != min).count() > 1) {
+        if (Arrays.stream(arr).filter(i -> i == secondMin).count() > 1) {
             System.out.println(-1);
             return;
         }
