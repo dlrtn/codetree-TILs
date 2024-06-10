@@ -14,7 +14,7 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
 
         int[] scores = new int[2];
-        Winner winner = Winner.NONE;
+        Winner winner = Winner.AB;
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
 
