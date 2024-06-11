@@ -28,8 +28,9 @@ public class Main {
                 oneCount = 0;
             }
 
-            if (oneCount == m * 2 - 1) {
+            if (oneCount == m + 1) {
                 count++;
+                oneCount = 0;
             }
         }
 
