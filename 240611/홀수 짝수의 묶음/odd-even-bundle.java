@@ -33,27 +33,21 @@ public class Main {
         count += evenCount * 2;
         oddCount -= evenCount;
 
-        boolean isEven;
-        if (evenCount % 2 == 0) {
-            isEven = true;
-        } else {
-            isEven = false;
-        }
+        boolean isEven = true;
 
-        while (oddCount > 0) {
-            if (isEven) {
-                if (oddCount >= 2) {
-                    count++;
-                    oddCount -= 2;
-                    isEven = false;
-                } else {
-                    count--;
-                    break;
-                }
-            } else {
+        if (isEven) {
+            count += (oddCount / 3) * 2;
+            if (oddCount % 3 == 2) {
                 count++;
-                oddCount--;
-                isEven = true;
+            } else if (oddCount % 3 == 1) {
+                count--;
+            }
+        } else {
+            count += oddCount / 3 * 2;
+            if (oddCount % 3 == 2) {
+                count += 2;
+            } else if (oddCount % 3 == 1) {
+                count++;
             }
         }
 
