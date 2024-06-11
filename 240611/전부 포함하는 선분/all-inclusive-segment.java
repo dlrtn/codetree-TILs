@@ -23,16 +23,17 @@ public class Main {
             lines.add(new Line(startX, endX));
         }
 
-        lines.sort((a, b) -> {
-            if (a.endX == b.endX) {
-                return a.startX - b.startX;
-            }
-            return a.endX - b.endX;
-        });
+
 
         if (n > 2) {
             int minDistance = Integer.MAX_VALUE;
 
+            lines.sort((a, b) -> {
+                if (a.startX == b.startX) {
+                    return a.endX - b.endX;
+                }
+                return a.startX - b.startX;
+            });
             int minX1 = Integer.MAX_VALUE;
             int maxX1 = 0;
             for (int i = 1; i < n; i++) {
@@ -41,6 +42,12 @@ public class Main {
             }
             minDistance = Math.min(minDistance, Math.abs(maxX1 - minX1));
 
+            lines.sort((a, b) -> {
+                if (a.endX == b.endX) {
+                    return a.startX - b.startX;
+                }
+                return a.endX - b.endX;
+            });
             int minX2 = Integer.MAX_VALUE;
             int maxX2 = 0;
             for (int i = 0; i < n - 1; i++) {
