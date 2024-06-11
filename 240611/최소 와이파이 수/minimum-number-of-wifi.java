@@ -22,16 +22,11 @@ public class Main {
 
         int oneCount = 0;
         for (int i = 0; i < n; i++) {
-            if (arr[i] == 1) {
-                oneCount++;
-            } else {
-                oneCount = 0;
+            if(arr[i] == 1) {
+                count++;
+                i += 2 * m;
             }
 
-            if (oneCount == m + 1) {
-                count++;
-                oneCount = 0;
-            }
         }
 
         System.out.println(count);
