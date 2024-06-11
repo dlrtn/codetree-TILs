@@ -31,8 +31,8 @@ public class Main {
         });
 
         if (n > 2) {
-            if (lines.get(0).endX - lines.get(1).startX < lines.get(n - 1).endX - lines.get(
-                    n - 2).startX) {
+            if (Math.abs(lines.get(0).endX - lines.get(1).startX) < Math.abs(lines.get(n - 1).endX - lines.get(
+                    n - 2).startX)) {
                 // 뒤에 선분을 제외하는 경우,
                 System.out.println(Math.abs(lines.get(0).startX - lines.get(n - 2).endX));
             } else {
