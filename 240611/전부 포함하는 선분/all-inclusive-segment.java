@@ -24,20 +24,33 @@ public class Main {
         }
 
         lines.sort((a, b) -> {
-            if (a.startX == b.startX) {
-                return a.endX - b.endX;
+            if (a.endX == b.endX) {
+                return a.startX - b.startX;
             }
-            return a.startX - b.startX;
+            return a.endX - b.endX;
         });
 
         if (n > 2) {
-            if (Math.abs(lines.get(0).endX - lines.get(1).startX) < Math.abs(lines.get(n - 1).endX - lines.get(
-                    n - 2).startX)) {
-                // 뒤에 선분을 제외하는 경우,
-                System.out.println(Math.abs(lines.get(0).startX - lines.get(n - 2).endX));
-            } else {
-                System.out.println(Math.abs(lines.get(1).startX - lines.get(n - 1).endX));
+            int minDistance = Integer.MAX_VALUE;
+
+            int minX1 = Integer.MAX_VALUE;
+            int maxX1 = 0;
+            for (int i = 1; i < n; i++) {
+                minX1 = Math.min(minX1, lines.get(i).startX);
+                maxX1 = Math.max(maxX1, lines.get(i).endX);
             }
+            minDistance = Math.min(minDistance, Math.abs(maxX1 - minX1));
+
+            int minX2 = Integer.MAX_VALUE;
+            int maxX2 = 0;
+            for (int i = 0; i < n - 1; i++) {
+                minX2 = Math.min(minX2, lines.get(i).startX);
+                maxX2 = Math.max(maxX2, lines.get(i).endX);
+
+            }
+            minDistance = Math.min(minDistance, Math.abs(maxX2 - minX2));
+
+            System.out.println(Math.abs(minDistance));
         } else {
             System.out.println(Math.abs(lines.get(0).startX - lines.get(1).endX));
         }
