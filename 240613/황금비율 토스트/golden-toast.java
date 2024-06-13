@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -14,12 +15,10 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        LinkedList<Character> s = new LinkedList<>();
         st = new StringTokenizer(br.readLine());
         String str = st.nextToken();
-        for (int i = 0; i < n; i++) {
-            s.add(str.charAt(i));
-        }
+        LinkedList<Character> s = new LinkedList<>();
+        s.addAll(str.chars().mapToObj(e -> (char) e).collect(Collectors.toCollection(LinkedList::new)));
 
         ListIterator<Character> it = s.listIterator(s.size());
 
@@ -55,7 +54,7 @@ public class Main {
         for (int i = 0; i < s.size(); i++) {
             sb.append(s.get(i));
         }
-        
+
         System.out.println(sb);
     }
 }
