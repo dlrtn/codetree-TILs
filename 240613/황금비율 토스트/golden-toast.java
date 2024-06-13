@@ -17,7 +17,6 @@ public class Main {
         LinkedList<Character> s = new LinkedList<>();
         st = new StringTokenizer(br.readLine());
         String str = st.nextToken();
-
         for (int i = 0; i < n; i++) {
             s.add(str.charAt(i));
         }
@@ -52,8 +51,11 @@ public class Main {
             }
         }
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.size(); i++) {
-            System.out.print(s.get(i));
+            sb.append(s.get(i));
         }
+        
+        System.out.println(sb);
     }
 }
