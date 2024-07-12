@@ -30,9 +30,7 @@ public class Main {
                 if (j == 0) {
                     nowNum = arr[i][j];
                     count = 1;
-                    continue;
-                }
-                if (arr[i][j] == nowNum) {
+                } else if (arr[i][j] == nowNum) {
                     count++;
                 } else {
                     nowNum = arr[i][j];
@@ -55,9 +53,7 @@ public class Main {
                 if (j == 0) {
                     nowNum = arr[j][i];
                     count = 1;
-                    continue;
-                }
-                if (arr[j][i] == nowNum) {
+                } else if (arr[j][i] == nowNum) {
                     count++;
                 } else {
                     nowNum = arr[j][i];
