@@ -31,7 +31,7 @@ public class Main {
                 temp.add(arr.poll());
             }
 
-            for (int j = 0; j < e - 1; j++) {
+            for (int j = 0; j < e - s + 1; j++) {
                 arr.poll();
             }
 
