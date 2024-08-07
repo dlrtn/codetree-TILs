@@ -29,16 +29,19 @@ public class Main {
 
         int row = 0;
         for (int i = 0; i < n; i++) {
-            int sum = 0;
             if (i + 1 < n) {
+                int sum = 0;
                 for (int j = k - 1; j < k + m - 1; j++) {
                     sum += arr[i + 1][j];
                 }
-            }
 
-            if (sum > 0) {
+                if (sum > 0) {
+                    row = i;
+                    break;
+                }
+            }
+            if (i == n - 1) {
                 row = i;
-                break;
             }
         }
 
