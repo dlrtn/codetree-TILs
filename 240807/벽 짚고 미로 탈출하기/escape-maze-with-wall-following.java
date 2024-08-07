@@ -41,18 +41,18 @@ public class Main {
             }
         }
 
-        while (!isExit() && wallExists()) {
+        while (!isExit() && wallExists() && movingDistance < 10000) {
             if (movable()) {
                 move();
 
                 if (!isExit() && !wallExists()) {
-                    turnCounterClockwise();
+                    turnClockwise();
                     move();
                 } else if (isExit()) {
                     break;
                 }
             } else {
-                turnClockwise();
+                turnCounterClockwise();
             }
         }
 
@@ -64,12 +64,12 @@ public class Main {
 
     }
 
-    public static void turnClockwise() {
+    public static void turnCounterClockwise() {
         direction += 1;
         direction %= 4;
     }
 
-    public static void turnCounterClockwise() {
+    public static void turnClockwise() {
         direction -= 1;
         if (direction < 0) {
             direction = 3;
@@ -82,8 +82,8 @@ public class Main {
 
     public static boolean movable() {
         return y + dy[direction] < 0 || y + dy[direction] >= arr.length || x + dx[direction] < 0
-                || x + dx[direction] >= arr.length || (arr[y + dy[direction]][x
-                + dx[direction]].equals(".") && !visited[y + dy[direction]][x + dx[direction]]);
+                || x + dx[direction] >= arr.length || arr[y + dy[direction]][x
+                + dx[direction]].equals(".");
     }
 
     public static boolean isExit() {
@@ -91,8 +91,6 @@ public class Main {
     }
 
     public static void move() {
-        visited[y][x] = true;
-
         x += dx[direction];
         y += dy[direction];
 
