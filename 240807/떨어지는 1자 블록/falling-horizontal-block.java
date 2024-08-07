@@ -28,14 +28,14 @@ public class Main {
         }
 
         int row = 0;
-        for (int i = n - 1; i >= 0; i--) {
+        for (int i = 0; i < n; i++) {
             // 모두 0인지 체크
             int sum = 0;
             for (int j = k - 1; j < k + m - 1; j++) {
-                sum += arr[i][j];
+                sum += arr[i + 1][j];
             }
 
-            if (sum == 0) {
+            if (sum > 0) {
                 row = i;
                 break;
             }
