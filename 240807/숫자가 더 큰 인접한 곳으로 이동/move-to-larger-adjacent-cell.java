@@ -45,6 +45,7 @@ public class Main {
                     visitPath.add(arr[rowIndex + dy[i]][columnIndex + dx[i]]);
                     rowIndex += dy[i];
                     columnIndex += dx[i];
+                    break;
                 }
             }
         }
