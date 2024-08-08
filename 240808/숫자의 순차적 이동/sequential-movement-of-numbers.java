@@ -23,8 +23,8 @@ public class Main {
             }
         }
 
-        boolean[] visited = new boolean[n * n];
         for (int i = 0; i < m; i++) {
+            boolean[] visited = new boolean[n * n];
             for (int z = 0; z < n * n; z++) {
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
@@ -48,7 +48,6 @@ public class Main {
                             int temp = map[j + dy[maxIndex]][k + dx[maxIndex]];
                             map[j + dy[maxIndex]][k + dx[maxIndex]] = map[j][k];
                             map[j][k] = temp;
-
                             visited[z] = true;
                         }
                     }
