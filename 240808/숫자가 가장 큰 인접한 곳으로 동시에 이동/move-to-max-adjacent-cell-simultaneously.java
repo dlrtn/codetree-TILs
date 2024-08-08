@@ -41,32 +41,8 @@ public class Main {
                 nextBallPositionCount[ball.r][ball.c]++;
             });
 
-            // 2개 이상인 경우, 볼 삭제 대상에 추가
-            LinkedList<Ball> delete = new LinkedList<>();
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < n; k++) {
-                    if (nextBallPositionCount[j][k] >= 2) {
-                        delete.add(new Ball(j, k));
-                    }
-                }
-            }
-
-            // 삭제 대상 인덱스 확인
-            LinkedList<Integer> deleteIndex = new LinkedList<>();
-            for (int j = 0; j < delete.size(); j++) {
-                Ball ball = delete.get(j);
-                for (int k = 0; k < balls.size(); k++) {
-                    Ball ball1 = balls.get(k);
-                    if (ball.r == ball1.r && ball.c == ball1.c) {
-                        deleteIndex.add(k);
-                    }
-                }
-            }
-
-            // 삭제 대상 삭제
-            for (int j = deleteIndex.size() - 1; j >= 0; j--) {
-                balls.remove((int) deleteIndex.get(j));
-            }
+            // 2개 이상의 구슬이 위치하는 경우, 해당 칸의 구슬을 모두 삭제한다.
+            balls.removeIf(ball -> nextBallPositionCount[ball.r][ball.c] > 1);
         }
 
         System.out.println(balls.size());
@@ -98,7 +74,7 @@ public class Main {
                 }
 
                 int nextNumber = map[nextR][nextC];
-                if (map[r][c] < nextNumber && maxNum < nextNumber) {
+                if (maxNum < nextNumber) {
                     maxNum = nextNumber;
                     nextDirection = i;
                 }
