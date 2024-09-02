@@ -26,7 +26,7 @@ public class Main {
         if (depth == n) {
             boolean isBeautifulNumber = false;
 
-            if (getResult()) {
+            if (getResult() || getaVoid()) {
                 isBeautifulNumber = true;
             }
 
@@ -57,6 +57,29 @@ public class Main {
                 if (cnt != number) {
                     return false;
                 }
+                number = nowNumber;
+                cnt = 1;
+            } else {
+                cnt++;
+            }
+        }
+        if (cnt != number) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean getaVoid() {
+        int number = 0;
+        int cnt = 0;
+        Integer[] numbers = queue.stream().mapToInt(Integer::intValue).boxed()
+                .toArray(Integer[]::new);
+
+        for (int i = 0; i < queue.size(); i++) {
+            int nowNumber = numbers[i];
+
+            if (nowNumber != number) {
                 if (number != 0 && cnt % number != 0) {
                     return false;
                 }
@@ -66,7 +89,7 @@ public class Main {
                 cnt++;
             }
         }
-        if ((number != 0 && cnt % number != 0) && cnt != number) {
+        if (number != 0 && cnt % number != 0) {
             return false;
         }
 
