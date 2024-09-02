@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 
@@ -9,7 +10,7 @@ public class Main {
 
     public static int count = 0;
 
-    public static ArrayDeque<Integer> queue = new ArrayDeque<>();
+    public static LinkedList<Integer> queue = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -47,11 +48,9 @@ public class Main {
     private static boolean getResult() {
         int number = 0;
         int cnt = 0;
-        Integer[] numbers = queue.stream().mapToInt(Integer::intValue).boxed()
-                .toArray(Integer[]::new);
 
         for (int i = 0; i < queue.size(); i++) {
-            int nowNumber = numbers[i];
+            int nowNumber = queue.get(i);
 
             if (nowNumber != number) {
                 if (cnt != number) {
@@ -73,11 +72,9 @@ public class Main {
     private static boolean getaVoid() {
         int number = 0;
         int cnt = 0;
-        Integer[] numbers = queue.stream().mapToInt(Integer::intValue).boxed()
-                .toArray(Integer[]::new);
 
         for (int i = 0; i < queue.size(); i++) {
-            int nowNumber = numbers[i];
+            int nowNumber = queue.get(i);
 
             if (nowNumber != number) {
                 if (number != 0 && cnt % number != 0) {
