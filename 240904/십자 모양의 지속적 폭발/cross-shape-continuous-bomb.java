@@ -32,13 +32,6 @@ public class Main {
             int column = Integer.parseInt(st.nextToken());
 
             boom(column - 1);
-
-            for (int x = 0; x < n; x++) {
-                for (int j = 0; j < n; j++) {
-                    System.out.print(map[x][j] + " ");
-                }
-                System.out.println();
-            }
         }
 
         for (int i = 0; i < n; i++) {
