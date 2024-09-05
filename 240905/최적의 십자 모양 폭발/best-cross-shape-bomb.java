@@ -83,17 +83,15 @@ public class Main {
             int count = 0;
             for (int j = n - 1; j >= 0; j--) {
                 if (nowNumber != map[j][i]) {
-                    if (nowNumber != 0 && count == 2) {
-                        numberCount++;
-                    }
                     nowNumber = map[j][i];
                     count = 1;
                 } else {
                     count++;
                 }
-            }
-            if (nowNumber != 0 && count == 2) {
-                numberCount++;
+
+                if (nowNumber != 0 && count >= 2) {
+                    numberCount++;
+                }
             }
         }
 
@@ -102,17 +100,15 @@ public class Main {
             int count = 0;
             for (int j = 0; j < n; j++) {
                 if (nowNumber != map[i][j]) {
-                    if (nowNumber != 0 && count == 2) {
-                        numberCount++;
-                    }
                     nowNumber = map[i][j];
                     count = 1;
                 } else {
                     count++;
                 }
-            }
-            if (nowNumber != 0 && count == 2) {
-                numberCount++;
+
+                if (nowNumber != 0 && count >= 2) {
+                    numberCount++;
+                }
             }
         }
 
