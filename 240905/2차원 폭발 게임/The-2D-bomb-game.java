@@ -28,12 +28,16 @@ public class Main {
         }
 
         for (int i = 0; i < k; i++) {
-            boom();
-            gravity();
+            while (boomCheck()) {
+                boom();
+                gravity();
+            }
             rotate();
             gravity();
         }
-        boom();
+        while (boomCheck()) {
+            boom();
+        }
 
         int count = 0;
         for (int i = 0; i < n; i++) {
@@ -70,6 +74,25 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static boolean boomCheck() {
+        for (int i = 0; i < n; i++) {
+            int nowNumber = 0;
+            int count = 0;
+            for (int j = n - 1; j >= 0; j--) {
+                if (nowNumber != map[j][i]) {
+                    if (count >= m) {
+                        return true;
+                    }
+                    nowNumber = map[j][i];
+                    count = 1;
+                } else {
+                    count++;
+                }
+            }
+        }
+        return false;
     }
 
     private static void gravity() {
