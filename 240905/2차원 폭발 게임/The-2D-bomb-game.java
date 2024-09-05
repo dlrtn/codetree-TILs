@@ -57,7 +57,7 @@ public class Main {
             int count = 0;
             for (int j = n - 1; j >= 0; j--) {
                 if (nowNumber != map[j][i]) {
-                    if (count >= m) {
+                    if (nowNumber != 0 && count >= m) {
                         for (int l = j + count; l > j; l--) {
                             map[l][i] = 0;
                         }
@@ -68,7 +68,7 @@ public class Main {
                     count++;
                 }
             }
-            if (count >= m) {
+            if (nowNumber != 0 && count >= m) {
                 for (int l = count - 1; l >= 0; l--) {
                     map[l][i] = 0;
                 }
@@ -82,7 +82,7 @@ public class Main {
             int count = 0;
             for (int j = n - 1; j >= 0; j--) {
                 if (nowNumber != map[j][i]) {
-                    if (count >= m) {
+                    if (nowNumber != 0 && count >= m) {
                         return true;
                     }
                     nowNumber = map[j][i];
@@ -90,6 +90,9 @@ public class Main {
                 } else {
                     count++;
                 }
+            }
+            if (nowNumber != 0 && count >= m) {
+                return true;
             }
         }
         return false;
