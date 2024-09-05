@@ -37,6 +37,7 @@ public class Main {
         }
         while (boomCheck()) {
             boom();
+            gravity();
         }
 
         int count = 0;
