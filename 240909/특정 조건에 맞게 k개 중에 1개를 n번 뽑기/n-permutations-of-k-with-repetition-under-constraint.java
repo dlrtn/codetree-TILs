@@ -22,7 +22,7 @@ public class Main {
 
     public static void backtracking(int k, int n, int depth) {
         if (depth == n) {
-            if (arrayList.stream().max(Integer::compareTo).get() == arrayList.stream().min(Integer::compareTo).get()) {
+            if (n != 1 && arrayList.stream().max(Integer::compareTo).get() == arrayList.stream().min(Integer::compareTo).get()) {
                 return;
             }
 
