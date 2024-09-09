@@ -22,10 +22,6 @@ public class Main {
 
     public static void backtracking(int k, int n, int depth) {
         if (depth == n) {
-            if (n != 1 && arrayList.stream().max(Integer::compareTo).get() == arrayList.stream().min(Integer::compareTo).get()) {
-                return;
-            }
-
             arrayList.forEach((item) -> {
                 System.out.print(item + " ");
             });
@@ -34,6 +30,10 @@ public class Main {
         }
 
         for (int i = 1; i <= k; i++) {
+            if (arrayList.size() >= 2 && arrayList.get(arrayList.size() - 1) == i && arrayList.get(arrayList.size() - 2) == i) {
+                continue;
+            }
+
             arrayList.add(i);
             backtracking(k, n, depth + 1);
             arrayList.remove(arrayList.size() - 1);
