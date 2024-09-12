@@ -28,12 +28,12 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        backtracking(m, n, 0);
+        backtracking(m, n, 0, 0);
 
         System.out.println(answer);
     }
 
-    public static void backtracking(int m, int n, int depth) {
+    public static void backtracking(int m, int n, int depth, int start) {
         if (depth == m) {
             int num = 0;
             for (int i = 0; i < m; i++) {
@@ -44,12 +44,10 @@ public class Main {
             return;
         }
 
-        for (int i = 0; i < n; i++) {
-            if (!arrayList.contains(arr[i])) {
-                arrayList.add(arr[i]);
-                backtracking(m, n, depth + 1);
-                arrayList.remove(arrayList.size() - 1);
-            }
+        for (int i = start; i < n; i++) {
+            arrayList.add(arr[i]);
+            backtracking(m, n, depth + 1, i);
+            arrayList.remove(arrayList.size() - 1);
         }
     }
 }
