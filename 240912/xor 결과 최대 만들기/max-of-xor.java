@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 
@@ -28,6 +29,8 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        arr = Arrays.stream(arr).sorted().toArray();
+
         backtracking(m, n, 0, 0);
 
         System.out.println(answer);
@@ -46,7 +49,7 @@ public class Main {
 
         for (int i = start; i < n; i++) {
             arrayList.add(arr[i]);
-            backtracking(m, n, depth + 1, i);
+            backtracking(m, n, depth + 1, i + 1);
             arrayList.remove(arrayList.size() - 1);
         }
     }
