@@ -21,8 +21,8 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        graph = new int[n][n];
-        vistied = new boolean[n][n];
+        graph = new int[n][m];
+        vistied = new boolean[n][m];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -42,7 +42,7 @@ public class Main {
 
     public static void dfs(int y, int x) {
         for (int k = 0; k < 2; k++) {
-            if ((y + dy[k] < m && x + dx[k] < n) && graph[y + dy[k]][x + dx[k]] == 1 && !vistied[y
+            if ((y + dy[k] < n && x + dx[k] < m) && graph[y + dy[k]][x + dx[k]] == 1 && !vistied[y
                     + dy[k]][x + dx[k]]) {
                 vistied[y + dy[k]][x + dx[k]] = true;
                 dfs(y + dy[k], x + dx[k]);
