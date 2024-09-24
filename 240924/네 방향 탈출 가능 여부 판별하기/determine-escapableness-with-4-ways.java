@@ -52,15 +52,14 @@ public class Main {
                 if (x + dx[i] < 0 || x + dx[i] >= graph.length || y + dy[i] < 0
                         || y + dy[i] >= graph[0].length) {
                     continue;
-                } else {
-                    if (graph[x + dx[i]][y + dy[i]] == 1 && !visited[x + dx[i]][y + dy[i]]) {
-                        q.add(new Pair(x + dx[i], y + dy[i]));
-                    }
+                } else if (!visited[x + dx[i]][y + dy[i]] && graph[x + dx[i]][y + dy[i]] == 1) {
+                    q.add(new Pair(x + dx[i], y + dy[i]));
+                    visited[x + dx[i]][y + dy[i]] = true;
                 }
-
             }
         }
     }
+
 
     public static class Pair {
 
