@@ -39,7 +39,7 @@ public class Main {
             bfs(graph, start, graph[start.x][start.y]);
 
             int max = Integer.MIN_VALUE;
-            Pair next = null;
+            Pair next = start;
 
             for (int j = 0; j < n; j++) {
                 for (int l = 0; l < n; l++) {
