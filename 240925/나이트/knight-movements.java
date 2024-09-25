@@ -34,7 +34,7 @@ public class Main {
 
         bfs(graph, start);
 
-        if (distance[r2 - 1][c2 - 1] == 0) {
+        if (distance[r2 - 1][c2 - 1] == 0 && (r1 != r2 && c1 != c2)) {
             System.out.println(-1);
         } else {
             System.out.println(distance[r2 - 1][c2 - 1]);
