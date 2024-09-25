@@ -33,16 +33,16 @@ public class Main {
 
         Pair start = new Pair(0, 0);
 
-        bfs(graph, start, graph[start.x][start.y]);
+        bfs(graph, start);
 
         if (distance[n - 1][m - 1] == 0) {
             System.out.println(-1);
         } else {
-            System.out.println(distance[n - 1][n - 1]);
+            System.out.println(distance[n - 1][m - 1]);
         }
     }
 
-    public static void bfs(int[][] graph, Pair start, int startValue) {
+    public static void bfs(int[][] graph, Pair start) {
         Queue<Pair> q = new LinkedList<>();
         q.add(start);
 
