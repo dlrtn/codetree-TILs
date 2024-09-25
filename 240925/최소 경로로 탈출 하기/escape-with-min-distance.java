@@ -35,7 +35,11 @@ public class Main {
 
         bfs(graph, start, graph[start.x][start.y]);
 
-        System.out.println(distance[n - 1][n - 1]);
+        if (distance[n - 1][n - 1] == 0) {
+            System.out.println(-1);
+        } else {
+            System.out.println(distance[n - 1][n - 1]);
+        }
     }
 
     public static void bfs(int[][] graph, Pair start, int startValue) {
