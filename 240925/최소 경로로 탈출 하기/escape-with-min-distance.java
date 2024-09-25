@@ -18,15 +18,15 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        int[][] graph = new int[n][n];
-        distance = new int[n][n];
-        visited = new boolean[n][n];
+        int[][] graph = new int[n][m];
+        distance = new int[n][m];
+        visited = new boolean[n][m];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < m; j++) {
                 graph[i][j] = Integer.parseInt(st.nextToken());
             }
         }
@@ -35,7 +35,7 @@ public class Main {
 
         bfs(graph, start, graph[start.x][start.y]);
 
-        if (distance[n - 1][n - 1] == 0) {
+        if (distance[n - 1][m - 1] == 0) {
             System.out.println(-1);
         } else {
             System.out.println(distance[n - 1][n - 1]);
@@ -54,7 +54,7 @@ public class Main {
                 int nx = p.x + dx[i];
                 int ny = p.y + dy[i];
 
-                if (nx >= 0 && nx < graph.length && ny >= 0 && ny < graph.length && !visited[nx][ny]
+                if (nx >= 0 && nx < graph.length && ny >= 0 && ny < graph[0].length && !visited[nx][ny]
                         && graph[nx][ny] == 1) {
                     q.add(new Pair(nx, ny));
                     visited[nx][ny] = true;
