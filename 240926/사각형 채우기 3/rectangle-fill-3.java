@@ -29,7 +29,7 @@ public class Main {
 
 
         for (int i = 3; i <= 1000; i++) {
-            dp[i] = (4 * dp[i - 1] + 2 * dp[i - 2]) % 1000000007;
+            dp[i] = (2 * dp[i - 1] + 4 * dp[i - 2]) % 1000000007;
         }
 
         System.out.println(dp[n]);
