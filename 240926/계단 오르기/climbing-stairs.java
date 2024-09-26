@@ -21,7 +21,7 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        int[] dp = new int[46];
+        int[] dp = new int[1001];
 
         dp[0] = 0;
         dp[1] = 0;
