@@ -35,11 +35,11 @@ public class Main {
                 } else if (i == 0) {
                     dp[i][j] = dp[i][j + 1] + arr[i][j];
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j + 1]) + arr[i][j];
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j + 1]) + arr[i][j];
                 }
             }
         }
 
-        System.out.println(dp[n - 1][n - 1]);
+        System.out.println(dp[n - 1][0]);
     }
 }
