@@ -25,13 +25,11 @@ public class Main {
         dp[0] = 0;
 
         for (int i = 1; i < n; i++) {
-            int max = 0;
             for (int j = 0; j < i; j++) {
                 if (arr[j] >= i - j && dp[j] != Integer.MIN_VALUE) {
-                    max = Math.max(max, dp[j] + 1);
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
-            dp[i] = max;
         }
 
         int answer = 0;
