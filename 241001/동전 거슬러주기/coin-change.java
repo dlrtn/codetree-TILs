@@ -21,7 +21,7 @@ public class Main {
 
         int[] dp = new int[m + 1];
         for (int i = 0; i <= m; i++) {
-            dp[i] = Integer.MAX_VALUE;
+            dp[i] = 10001;
         }
         dp[0] = 0;
 
