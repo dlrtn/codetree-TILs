@@ -24,7 +24,9 @@ public class Main {
                 dp[i][j] = 10000;
             }
         }
-        dp[0][ints[0]] = 1;
+        if (m >= ints[0]) {
+            dp[0][ints[0]] = 1;
+        }
 
         for (int i = 1; i < n; i++) {
             for (int j = 0; j <= i - 1; j++) {
@@ -44,7 +46,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             answer = Math.min(answer, dp[i][m]);
         }
-        
+
         if (answer != 10000) {
             System.out.println(answer);
         } else {
