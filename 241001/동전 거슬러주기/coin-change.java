@@ -35,6 +35,10 @@ public class Main {
             }
         }
 
-        System.out.println(dp[m]);
+        if (dp[m] != 10001) {
+            System.out.println(dp[m]);
+        } else {
+            System.out.println(-1);
+        }
     }
 }
