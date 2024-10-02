@@ -18,12 +18,15 @@ public class Main {
         }
 
         int[][] dp = new int[n + 1][4];
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j <= 3; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= 3; j++) {
                 dp[i][j] = Integer.MIN_VALUE;
             }
         }
+        dp[0][0] = 0;
         dp[1][1] = ints[0];
+
+
         for (int i = 2; i <= n; i++) {
             for (int j = 0; j <= 3; j++) {
                 if (j - 1 < 0) {
@@ -35,10 +38,8 @@ public class Main {
         }
 
         int max = 0;
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= 3; j++) {
-                max = Math.max(max, dp[i][j]);
-            }
+        for (int i = 0; i <= 3; i++) {
+            max = Math.max(max, dp[n][i]);
         }
 
         System.out.println(max);
