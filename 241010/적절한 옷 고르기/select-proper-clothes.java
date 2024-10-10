@@ -2,11 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,38 +13,46 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        List<List<Integer>> beautifuls = new LinkedList<>();
+        int[][] clothes = new int[n][3];
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+
+            clothes[i][0] = Integer.parseInt(st.nextToken()) - 1;
+            clothes[i][1] = Integer.parseInt(st.nextToken()) - 1;
+            clothes[i][2] = Integer.parseInt(st.nextToken());
+        }
+
+        int[][] dp = new int[m][n];
         for (int i = 0; i < m; i++) {
-            beautifuls.add(new LinkedList<>());
+            Arrays.fill(dp[i], -1);
         }
 
         for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
-            int s = Integer.parseInt(st.nextToken());
-            int e = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
-
-            for (int j = s - 1; j < e; j++) {
-                beautifuls.get(j).add(v);
+            if (clothes[i][0] == 0) {
+                dp[0][i] = 0;
             }
         }
-        
-        int[] dp = new int[m + 1];
-        for (int i = 1; i < m + 1; i++) {
-            int max = 0;
-            for (int v : beautifuls.get(i - 1)) {
-                if (max <= Math.abs(dp[i - 1] - v)) {
-                    max = v;
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (clothes[j][0] <= i && clothes[j][1] >= i) {
+                    for (int k = 0; k < n; k++) {
+                        if (dp[i - 1][k] == -1) {
+                            continue;
+                        }
+                        dp[i][j] = Math.max(dp[i][j],
+                                dp[i - 1][k] + Math.abs(clothes[k][2] - clothes[j][2]));
+                    }
                 }
             }
-            dp[i] = max;
         }
 
-        int sum = 0;
-        for (int i = 2; i < m  + 1; i++) {
-            sum += Math.abs(dp[i] - dp[i - 1]);
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, dp[m - 1][i]);
         }
 
-        System.out.println(sum);
+        System.out.println(max);
+
     }
 }
