@@ -28,6 +28,12 @@ public class Main {
                     if (i == 0 && j == 0) {
                         dp[i][j] = 0;
                         continue;
+                    } else if (i == 0) {
+                        dp[i][j] = dp[i][j - 1];
+                        continue;
+                    } else if (j == 0) {
+                        dp[i][j] = dp[i - 1][j];
+                        continue;
                     }
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
                 }
