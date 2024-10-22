@@ -48,8 +48,10 @@ public class Main {
                         throw new Exception();
                     }
                     // 몸이 꼬이는 경우 종료 : head가 tail 중 하나를 만나는 경우 종료
-                    for (Point tail : snake.tails) {
-                        if (snake.head.x + dx[directionIndex] == tail.x && snake.head.y + dy[directionIndex] == tail.y) {
+                    for (int l = 0; l < snake.tails.size() - 1; l++) {
+
+                        if (snake.head.x + dx[directionIndex] == snake.tails.get(l).x
+                                && snake.head.y + dy[directionIndex] == snake.tails.get(l).y) {
                             throw new Exception();
                         }
                     }
@@ -58,6 +60,7 @@ public class Main {
 
                     if (graph[snake.head.x][snake.head.y] == 1) {
                         snake.eat(direction);
+                        graph[snake.head.x][snake.head.y] = 0;
                     }
 
                     time++;
