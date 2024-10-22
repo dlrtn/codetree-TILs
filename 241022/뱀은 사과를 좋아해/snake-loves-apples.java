@@ -116,7 +116,7 @@ public class Main {
         }
 
         public void eat(String direction) {
-            int directionIndex = Direction.valueOf(direction).getValue() + 2 % 4;
+            int directionIndex = (Direction.valueOf(direction).getValue() + 2) % 4;
 
             Point tail = new Point(head.x + dx[directionIndex], head.y + dy[directionIndex]);
 
