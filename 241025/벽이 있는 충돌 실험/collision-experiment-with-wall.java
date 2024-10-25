@@ -1,26 +1,14 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
 
     private static final int[] dx = {0, 1, 0, -1};
     private static final int[] dy = {1, 0, -1, 0};
-
-    private enum Direction {
-        R(0), D(1), L(2), U(3);
-
-        private final int value;
-
-        Direction(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,10 +17,9 @@ public class Main {
 
         for (int i = 0; i < t; i++) {
             st = new StringTokenizer(br.readLine());
-
             int n = Integer.parseInt(st.nextToken());
             int m = Integer.parseInt(st.nextToken());
-            
+
             int[][] map = new int[n][n];
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < n; k++) {
@@ -49,7 +36,7 @@ public class Main {
                 map[x - 1][y - 1] = Direction.valueOf(d).getValue();
             }
 
-            for (int f = 0; f < n * 2 + 2; f++) {
+            for (int f = 0; f < n * 2; f++) {
                 int[][] temp = new int[n][n];
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
@@ -57,6 +44,7 @@ public class Main {
                     }
                 }
 
+                Queue<Point> queue = new LinkedList<>();
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
                         if (map[j][k] != -1) {
@@ -69,22 +57,27 @@ public class Main {
                                 direction = (direction + 2) % 4;
 
                                 if (temp[j][k] != -1) {
-                                    temp[j][k] = -1;
+                                    queue.add(new Point(j, k));
                                 } else {
                                     temp[j][k] = direction;
                                 }
-
-                                continue;
-                            }
-
-                            if (temp[x][y] != -1) {
-                                temp[x][y] = -1;
                             } else {
-                                temp[x][y] = direction;
+                                if (temp[x][y] != -1) {
+                                    queue.add(new Point(x, y));
+                                } else {
+                                    temp[x][y] = direction;
+                                }
                             }
                         }
                     }
                 }
+
+                queue.forEach(point -> {
+                    int x = point.getX();
+                    int y = point.getY();
+
+                    temp[x][y] = -1;
+                });
 
                 map = temp;
             }
@@ -99,6 +92,38 @@ public class Main {
             }
 
             System.out.println(count);
+        }
+    }
+
+    private static class Point {
+        private int x;
+        private int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+
+    private enum Direction {
+        R(0), D(1), L(2), U(3);
+
+        private final int value;
+
+        Direction(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
         }
     }
 }
