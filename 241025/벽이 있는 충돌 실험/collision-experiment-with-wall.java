@@ -44,7 +44,6 @@ public class Main {
                     }
                 }
 
-                Queue<Point> queue = new LinkedList<>();
                 for (int j = 0; j < n; j++) {
                     for (int k = 0; k < n; k++) {
                         if (map[j][k] != -1) {
@@ -57,13 +56,13 @@ public class Main {
                                 direction = (direction + 2) % 4;
 
                                 if (temp[j][k] != -1) {
-                                    queue.add(new Point(j, k));
+                                    temp[j][k] = -2;
                                 } else {
                                     temp[j][k] = direction;
                                 }
                             } else {
                                 if (temp[x][y] != -1) {
-                                    queue.add(new Point(x, y));
+                                    temp[x][y] = -2;
                                 } else {
                                     temp[x][y] = direction;
                                 }
@@ -72,12 +71,13 @@ public class Main {
                     }
                 }
 
-                queue.forEach(point -> {
-                    int x = point.getX();
-                    int y = point.getY();
-
-                    temp[x][y] = -1;
-                });
+                for (int j = 0; j < n; j++) {
+                    for (int k = 0; k < n; k++) {
+                        if (temp[j][k] == -2) {
+                            temp[j][k] = -1;
+                        }
+                    }
+                }
 
                 map = temp;
             }
