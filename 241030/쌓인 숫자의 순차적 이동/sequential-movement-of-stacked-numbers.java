@@ -19,7 +19,6 @@ public class Main {
         // m 번에 걸쳐서 이동한다.
         // 이때 조건은 다음과 같다.
         // 각 위치에서 여덟 방향으로 인접한 칸 중, 가장 큰 값이 적혀있는 숫자가 있는 곳으로 이동한다.
-        // tlqkf 이게 ㅜ머임?
 
         LinkedList<LinkedList<Stack>> list = new LinkedList<>();
         for (int i = 0; i < n; i++) {
@@ -37,8 +36,8 @@ public class Main {
             movingNumbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        int x = 0;
-        int y = 0;
+        int x = -1;
+        int y = -1;
         for (int i = 0; i < m; i++) {
             // find moving number's index
             for (int j = 0; j < n; j++) {
@@ -55,8 +54,8 @@ public class Main {
             }
 
             int maxNumber = 0;
-            int maxNumberX = 0;
-            int maxNumberY = 0;
+            int maxNumberX = -1;
+            int maxNumberY = -1;
             for (int j = 0; j < 8; j++) {
                 int nextX = x + dx[j];
                 int nextY = y + dy[j];
@@ -69,6 +68,10 @@ public class Main {
                     maxNumberX = nextX;
                     maxNumberY = nextY;
                 }
+            }
+
+            if (maxNumberX == -1 && maxNumberY == -1) {
+                continue;
             }
 
             int stackIndex = list.get(x).get(y).indexOf(movingNumbers[i]);
