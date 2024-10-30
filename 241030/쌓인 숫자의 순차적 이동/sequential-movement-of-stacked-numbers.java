@@ -36,18 +36,18 @@ public class Main {
             movingNumbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        int x = -1;
-        int y = -1;
+        int x = 0;
+        int y = 0;
         for (int i = 0; i < m; i++) {
             // find moving number's index
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < n; k++) {
-                    Stack<Integer> nowStack = list.get(j).get(k);
 
-                    for (int l = 0; l < nowStack.size(); l++) {
-                        if (nowStack.get(l) == movingNumbers[i]) {
+                    for (int l = 0; l < list.get(j).get(k).size(); l++) {
+                        if ((int) list.get(j).get(k).get(l) == movingNumbers[i]) {
                             x = j;
                             y = k;
+                            break;
                         }
                     }
                 }
@@ -59,14 +59,17 @@ public class Main {
             for (int j = 0; j < 8; j++) {
                 int nextX = x + dx[j];
                 int nextY = y + dy[j];
+
                 if ((nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) || list.get(nextX).get(nextY).isEmpty()) {
                     continue;
                 }
 
-                if (maxNumber < (int) list.get(nextX).get(nextY).get(0)) {
-                    maxNumber = (int) list.get(nextX).get(nextY).get(0);
-                    maxNumberX = nextX;
-                    maxNumberY = nextY;
+                for (int k = 0; k < list.get(nextX).get(nextY).size(); k++) {
+                    if (maxNumber < (int) list.get(nextX).get(nextY).get(k)) {
+                        maxNumber = (int) list.get(nextX).get(nextY).get(k);
+                        maxNumberX = nextX;
+                        maxNumberY = nextY;
+                    }
                 }
             }
 
@@ -77,8 +80,7 @@ public class Main {
             int stackIndex = list.get(x).get(y).indexOf(movingNumbers[i]);
             int stackSize = list.get(x).get(y).size();
             for (int j = stackIndex; j < stackSize; j++) {
-                list.get(maxNumberX).get(maxNumberY).push(list.get(x).get(y).get(stackIndex));
-                list.get(x).get(y).remove(stackIndex);
+                list.get(maxNumberX).get(maxNumberY).push(list.get(x).get(y).remove(stackIndex));
             }
         }
 
