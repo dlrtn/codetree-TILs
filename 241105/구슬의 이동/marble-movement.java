@@ -11,23 +11,6 @@ public class Main {
     private static int[] dy = {1, 0, -1, 0};
     private static int n;
 
-    enum Direction {
-        R(0),
-        D(1),
-        L(2),
-        U(3);
-
-        private final int value;
-
-        Direction(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -74,7 +57,7 @@ public class Main {
 
             for (int j = 0; j < n; j++) {
                 for (int l = 0; l < n; l++) {
-                    if (map.get(j).get(l).size() == 0) {
+                    if (map.get(j).get(l).isEmpty()) {
                         continue;
                     }
 
@@ -96,9 +79,11 @@ public class Main {
                             }
                             return o1.velocity - o2.velocity;
                         });
+                        
+                        int size = newMap.get(j).get(l).size();
 
-                        for (int m1 = 0; m1 < newMap.get(j).get(l).size() - k; m1++) {
-                            newMap.get(j).get(l).pop();
+                        for (int m1 = 0; m1 < size - k; m1++) {
+                            newMap.get(j).get(l).remove(0);
                         }
                     }
                 }
@@ -117,13 +102,47 @@ public class Main {
         System.out.println(count);
     }
 
+    enum Direction {
+        R(0),
+        D(1),
+        L(2),
+        U(3);
+
+        private final int value;
+
+        Direction(int value) {
+            this.value = value;
+        }
+
+        public Direction changeReverse() {
+            switch (this) {
+                case R:
+                    return L;
+                case D:
+                    return U;
+                case L:
+                    return R;
+                case U:
+                    return D;
+                default:
+                    return null;
+            }
+        }
+    }
+
     public static class Ball {
         Point position;
-        String direction;
+        Direction direction;
         int number;
         int velocity;
 
-        // 바뀌어야 하는 것 : x, y, direction
+        public Ball(int x, int y, String direction, int number, int velocity) {
+            this.position = new Point(x, y);
+            this.direction = Direction.valueOf(direction);
+            this.number = number;
+            this.velocity = velocity;
+        }
+
         public void move() {
             for (int i = 0; i < velocity; i++) {
                 Point nextPosition = getNextPosition();
@@ -132,35 +151,20 @@ public class Main {
                     changeDirection();
                 }
 
-                position.x += dx[Direction.valueOf(direction).getValue()];
-                position.y += dy[Direction.valueOf(direction).getValue()];
+                position.x += dx[direction.value];
+                position.y += dy[direction.value];
             }
         }
 
         private void changeDirection() {
-            if (direction.equals("R")) {
-                direction = "L";
-            } else if (direction.equals("D")) {
-                direction = "U";
-            } else if (direction.equals("L")) {
-                direction = "R";
-            } else {
-                direction = "D";
-            }
+            direction = direction.changeReverse();
         }
 
         private Point getNextPosition() {
-            int nextX = position.x + dx[Direction.valueOf(direction).getValue()];
-            int nextY = position.y + dy[Direction.valueOf(direction).getValue()];
+            int nextX = position.x + dx[direction.value];
+            int nextY = position.y + dy[direction.value];
 
             return new Point(nextX, nextY);
-        }
-
-        public Ball(int x, int y, String direction, int number, int velocity) {
-            this.position = new Point(x, y);
-            this.direction = direction;
-            this.number = number;
-            this.velocity = velocity;
         }
     }
 
