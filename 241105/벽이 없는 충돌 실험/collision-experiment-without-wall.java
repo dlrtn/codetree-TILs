@@ -1,155 +1,151 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map.Entry;
-import java.util.StringTokenizer;
+import java.util.Scanner;
+import java.util.ArrayList;
 
+class Marble {
+    int x, y, weight, dir, num;
+    public Marble(int x, int y, int weight, int dir, int num) {
+        this.x = x;
+        this.y = y;
+        this.weight = weight;
+        this.dir = dir;
+        this.num = num;
+    }
+}
 
 public class Main {
+    public static final int BLANK = -1;
+    public static final int ASCII_NUM = 128;
+    public static final int COORD_SIZE = 4000;
+    public static final int OFFSET = 2000;
+    public static final int DIR_NUM = 4;
 
-    private static int[] dx = {0, 1, 0, -1};
-    private static int[] dy = {1, 0, -1, 0};
-    private static int n;
-    private static int answer;
+    public static int t, n;
 
-    public static void main(String args[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+    public static int[] mapper = new int[ASCII_NUM];
 
-        int t = Integer.parseInt(st.nextToken());
+    public static int[] dx = new int[]{0, 1, -1, 0};
+    public static int[] dy = new int[]{1, 0, 0, -1};
 
-        answer = -1;
-        for (int i = 0; i < t; i++) {
-            st = new StringTokenizer(br.readLine());
-            n = Integer.parseInt(st.nextToken());
+    public static int currTime;
+    public static int lastCollisionTime;
 
-            LinkedList<Ball> balls = new LinkedList<>();
-            for (int j = 0; j < n; j++) {
-                st = new StringTokenizer(br.readLine());
+    public static ArrayList<Marble> marbles = new ArrayList<>();
+    public static ArrayList<Marble> nextMarbles = new ArrayList<>();
+    public static int[][] nextMarbleIndex = new int[COORD_SIZE + 1][COORD_SIZE + 1];
 
-                int x = Integer.parseInt(st.nextToken());
-                int y = Integer.parseInt(st.nextToken());
-                int weight = Integer.parseInt(st.nextToken());
-                String direction = st.nextToken();
+    public static Marble Move(Marble marble) {
+        int x = marble.x;
+        int y = marble.y;
+        int weight = marble.weight;
+        int dir = marble.dir;
+        int num = marble.num;
 
-                balls.add(new Ball(x, y, direction, j + 1, weight));
+        int nx = x + dx[dir], ny = y + dy[dir];
+        return new Marble(nx, ny, weight, dir, num);
+    }
+
+    public static int findDuplicateMarble(Marble marble) {
+        int targetX = marble.x;
+        int targetY = marble.y;
+
+        return nextMarbleIndex[targetX][targetY];
+    }
+
+    public static Marble Collide(Marble marble1, Marble marble2) {
+        int weight1 = marble1.weight;
+        int num1 = marble1.num;
+
+        int weight2 = marble2.weight;
+        int num2 = marble2.num;
+
+        if(weight1 > weight2 || (weight1 == weight2 && num1 > num2))
+            return marble1;
+        else
+            return marble2;
+    }
+
+    public static boolean outOfActiveCoordinate(Marble marble) {
+        int x = marble.x;
+        int y = marble.y;
+
+        return x < 0 || x > COORD_SIZE || y < 0 || y > COORD_SIZE;
+    }
+
+    // 그 다음 구슬의 목록에 반영합니다.
+    public static void pushNextMarble(Marble marble) {
+        if(outOfActiveCoordinate(marble))
+            return;
+
+        int index = findDuplicateMarble(marble);
+
+        if(index == BLANK) {
+            nextMarbles.add(marble);
+
+            int x = marble.x;
+            int y = marble.y;
+            nextMarbleIndex[x][y] = (int) (nextMarbles.size()) - 1;
+        }
+
+        else {
+            Marble newMarble = Collide(nextMarbles.get(index), marble);
+            nextMarbles.set(index, newMarble);
+            lastCollisionTime = currTime;
+        }
+    }
+
+    public static void simulate() {
+        for(int i = 0; i < (int) marbles.size(); i++) {
+            Marble nextMarble = Move(marbles.get(i));
+            
+            pushNextMarble(nextMarble);
+        }
+
+        marbles = (ArrayList<Marble>) nextMarbles.clone();
+
+        for(int i = 0; i < (int) nextMarbles.size(); i++) {
+            int x = nextMarbles.get(i).x;
+            int y = nextMarbles.get(i).y;
+            nextMarbleIndex[x][y] = BLANK;
+        }
+        nextMarbles = new ArrayList<>();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        mapper['U'] = 0;
+        mapper['R'] = 1;
+        mapper['L'] = 2;
+        mapper['D'] = 3;
+        
+        t = sc.nextInt();
+        
+        for(int i = 0; i <= COORD_SIZE; i++)
+            for(int j = 0; j <= COORD_SIZE; j++)
+                nextMarbleIndex[i][j] = BLANK;
+
+        while(t-- > 0) {
+            marbles = new ArrayList<>();
+            lastCollisionTime = -1;
+
+            n = sc.nextInt();
+            for(int i = 1; i <= n; i++) {
+                int x = sc.nextInt();
+                int y = sc.nextInt();
+                int weight = sc.nextInt();
+                char d = sc.next().charAt(0);
+                
+                x *= 2; y *= 2;
+                
+                x += OFFSET; y += OFFSET;
+                marbles.add(new Marble(x, y, weight, mapper[d], i));
             }
 
-            answer = -1;
-            int time = 0;
-            while (true) {
-                if (balls.isEmpty()) {
-                    break;
-                }
-                time += 1;
-
-                balls.forEach(Ball::move);
-
-                HashMap<Point, Integer> map = new HashMap<>();
-                balls.forEach((Ball ball) -> {
-                    for (int i1 = 0; i1 < balls.size(); i1++) {
-                        Ball ball1 = balls.get(i1);
-                        if (ball.position.x == ball1.position.x && ball.position.y == ball1.position.y) {
-                            map.put(ball.position, map.getOrDefault(ball.position, 0) + 1);
-                        }
-                    }
-                });
-
-                for (Entry<Point, Integer> entry : map.entrySet()) {
-                    Point key = entry.getKey();
-                    Integer value = entry.getValue();
-                    if (value > 1) {
-                        LinkedList<Ball> temp = new LinkedList<>();
-                        balls.forEach((ball) -> {
-                            if (ball.position.x == key.x && ball.position.y == key.y) {
-                                temp.add(ball);
-                            }
-                        });
-
-                        temp.sort((o1, o2) -> {
-                            if (o1.weight == o2.weight) {
-                                return o1.number - o2.number;
-                            }
-                            return o1.weight - o2.weight;
-                        });
-
-                        for (int i1 = 0; i1 < value - 1; i1++) {
-                            Ball ball = temp.get(0);
-
-                            balls.remove(ball);
-                        }
-
-                        answer = time;
-                    }
-                }
-
-                LinkedList<Ball> temp = new LinkedList<>();
-                balls.forEach((Ball ball) -> {
-                    if (ball.position.x < -1000 || ball.position.x > 1000 || ball.position.y < -1000 || ball.position.y > 1000) {
-                        temp.add(ball);
-                    }
-                });
-
-                temp.forEach(balls::remove);
+            for(int i = 1; i <= COORD_SIZE; i++) {
+                currTime = i;
+                simulate();
             }
 
-            System.out.println(answer);
-        }
-
-    }
-
-    enum Direction {
-        U(0),
-        R(1),
-        D(2),
-        L(3);
-
-        private final int value;
-
-        Direction(int value) {
-            this.value = value;
-        }
-    }
-
-    public static class Ball {
-        Point position;
-        Direction direction;
-        int number;
-        int weight;
-
-        public Ball(int x, int y, String direction, int number, int weight) {
-            this.position = new Point(x, y);
-            this.direction = Direction.valueOf(direction);
-            this.number = number;
-            this.weight = weight;
-        }
-
-        public void move() {
-            position.x += dx[direction.value] * 0.5;
-            position.y += dy[direction.value] * 0.5;
-        }
-    }
-
-    public static class Point {
-        double x;
-        double y;
-
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public int hashCode() {
-            return (int) (x * 31 + y);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            Point point = (Point) obj;
-            return x == point.x && y == point.y;
+            System.out.println(lastCollisionTime);
         }
     }
 }
