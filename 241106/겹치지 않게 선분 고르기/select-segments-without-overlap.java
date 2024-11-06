@@ -20,10 +20,10 @@ public class Main {
         }
 
         lines.sort((a, b) -> {
-            if (a.start == b.start) {
-                return a.end - b.end;
+            if (a.end == b.end) {
+                return a.start - b.start;
             }
-            return a.start - b.start;
+            return a.end - b.end;
         });
 
         int answer = 1;
