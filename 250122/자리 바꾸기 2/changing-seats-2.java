@@ -18,13 +18,13 @@ public class Main {
         for (int i = 0; i < k; i++) {
             st = new StringTokenizer(br.readLine());
 
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
+            arr[i][0] = Integer.parseInt(st.nextToken()) - 1;
+            arr[i][1] = Integer.parseInt(st.nextToken()) - 1;
         }
 
         LinkedList<HashSet> list = new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            array[i] = i + 1;
+            array[i] = i;
             HashSet<Integer> set = new HashSet<>();
 
             set.add(i);
@@ -34,13 +34,13 @@ public class Main {
         // a1, b1
 
         for (int i = 0; i < 3 * k; i++) {
-            int a = arr[i % 4][0] - 1;
-            int b = arr[i % 4][1] - 1;
+            int a = arr[i % k][0];
+            int b = arr[i % k][1];
 
             swap(array, a, b);
 
-            list.get(array[a] - 1).add(a);
-            list.get(array[b] - 1).add(b);
+            list.get(array[a]).add(a);
+            list.get(array[b]).add(b);
         }
 
         for (HashSet<Integer> set : list) {
