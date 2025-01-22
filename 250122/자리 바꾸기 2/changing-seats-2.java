@@ -22,13 +22,13 @@ public class Main {
             arr[i][1] = Integer.parseInt(st.nextToken()) - 1;
         }
 
-        LinkedList<HashSet> list = new LinkedList<>();
+        HashSet<Integer>[] list = new HashSet[n];
         for (int i = 0; i < n; i++) {
             array[i] = i;
             HashSet<Integer> set = new HashSet<>();
 
             set.add(i);
-            list.add(set);
+            list[i] = set;
         }
 
         // a1, b1
@@ -39,8 +39,8 @@ public class Main {
 
             swap(array, a, b);
 
-            list.get(array[a]).add(a);
-            list.get(array[b]).add(b);
+            list[array[a]].add(a);
+            list[array[b]].add(b);
         }
 
         for (HashSet<Integer> set : list) {
