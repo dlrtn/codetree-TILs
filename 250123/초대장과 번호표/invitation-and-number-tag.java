@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -13,45 +16,44 @@ public class Main {
         int g = Integer.parseInt(st.nextToken());
 
         HashSet<Integer> invited = new HashSet<>();
-        HashSet<Integer>[] groups = new HashSet[g];
+        Queue<HashSet<Integer>> groups = new LinkedList<>();
         invited.add(Integer.valueOf(1));
         for (int i = 0; i < g; i++) {
             st = new StringTokenizer(br.readLine());
 
             int groupSize = Integer.parseInt(st.nextToken());
 
-            groups[i] = new HashSet<>();
+            HashSet<Integer> group = new HashSet<>();
 
             for (int j = 0; j < groupSize; j++) {
                 int member = Integer.parseInt(st.nextToken());
-                groups[i].add(Integer.valueOf(member));
+                group.add(Integer.valueOf(member));
+
+                groups.add(group);
             }
         }
 
-        // 정렬해줘야할 듯, 정렬 기준은 1이 포함되어있으면서 그룹의 크기가 작은 순
-        Arrays.sort(groups, (o1, o2) -> {
-            if (o1.size() == o2.size()) {
-                if (o1.contains(1)) {
-                    return -1;
-                } else if (o2.contains(1)) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-            return o1.size() - o2.size();
-        });
-
-        for (int i = 0; i < g; i++) {
+        int count = 0;
+        while (!groups.isEmpty()) {
+            HashSet<Integer> group = groups.poll();
             HashSet<Integer> invitedMemberInGroup = new HashSet<>();
-            for (Integer invitedMember: invited) {
-                if (groups[i].contains(invitedMember)) {
+
+            for (Integer invitedMember : invited) {
+                if (group.contains(invitedMember)) {
                     invitedMemberInGroup.add(invitedMember);
                 }
             }
 
-            if (invitedMemberInGroup.size() == groups[i].size() - 1) {
-                invited.addAll(groups[i]);
+            if (invitedMemberInGroup.size() == group.size() - 1) {
+                invited.addAll(group);
+                count = 0;
+            } else {
+                groups.add(group);
+                count++;
+            }
+
+            if (count == groups.size()) {
+                break;
             }
         }
 
