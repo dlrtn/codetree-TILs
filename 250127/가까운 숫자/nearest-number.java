@@ -15,17 +15,23 @@ public class Main {
         TreeSet<Integer> set = new TreeSet<>();
         set.add(0);
 
+        int minDistance = Integer.MAX_VALUE;
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             int num = Integer.parseInt(st.nextToken());
             set.add(num);
 
-            int minDistance = Integer.MAX_VALUE;
-            for (int s : set) {
-                if (set.higher(s) != null) {
-                    minDistance = Math.min(minDistance, set.higher(s) - s);
-                }
+            Integer lower = set.lower(num);
+            Integer higher = set.higher(num);
+
+            if (lower != null) {
+                minDistance = Math.min(minDistance, num - lower);
             }
+
+            if (higher != null) {
+                minDistance = Math.min(minDistance, higher - num);
+            }
+
             System.out.println(minDistance);
         }
 
