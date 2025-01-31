@@ -17,7 +17,7 @@ public class Main {
             @Override
             public int compare(Problem o1, Problem o2) {
                 if (o1.l == o2.l) {
-                    return o2.p - o1.p;
+                    return o1.p - o2.p;
                 }
                 return o1.l - o2.l;
             }
@@ -57,10 +57,10 @@ public class Main {
                     int x = Integer.parseInt(st.nextToken());
 
                     if (x == -1) {
-                        Problem problem = problems.pollFirst();
+                        Problem problem = problems.first();
                         System.out.println(problem.p);
                     } else {
-                        Problem problem = problems.pollLast();
+                        Problem problem = problems.last();
                         System.out.println(problem.p);
                     }
                     break;
