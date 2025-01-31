@@ -16,6 +16,7 @@ public class Main {
         TreeSet<Integer> set = new TreeSet<>();
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
+
             set.add(Integer.parseInt(st.nextToken()));
         }
 
@@ -23,14 +24,16 @@ public class Main {
         int minDiff = Integer.MAX_VALUE;
 
         for (Integer num: set) {
-            if (set.higher(num + m) != null) {
-                int higher = set.higher(num + m);
+            if (set.ceiling(num + m) != null) {
+                int higher = set.ceiling(num + m);
                 if (higher - num < minDiff) {
                     answer = higher - num;
+                    minDiff = higher - num;
                 }
             }
         }
 
         System.out.println(answer);
+
     }
 }
