@@ -27,7 +27,7 @@ public class Main {
             sum -= arr[i];
             pq.remove(arr[i]);
 
-            int avg = (sum - pq.peek()) / (pq.size() - 1);
+            double avg = (double) (sum - pq.peek()) / (pq.size() - 1);
 
             max = Math.max(avg, max);
         }
