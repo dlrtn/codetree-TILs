@@ -28,7 +28,7 @@ public class Main {
             }
             pq.add(first - second);
         }
-
-        System.out.println(pq.poll());
+        
+        System.out.println(pq.isEmpty() ? -1 : pq.poll());
     }
 }
