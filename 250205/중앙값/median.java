@@ -16,37 +16,28 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             int m = Integer.parseInt(st.nextToken());
 
-            PriorityQueue<Integer> ascPq = new PriorityQueue<>();
-            PriorityQueue<Integer> descPq = new PriorityQueue<>(Comparator.reverseOrder());
+            PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+            PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < m; j++) {
-                int num = Integer.parseInt(st.nextToken());
 
-                ascPq.add(num);
-                descPq.add(num);
+            for (int j = 0; j < m; j++) {
+                if (j % 2 == 0) {
+                    maxHeap.add(Integer.parseInt(st.nextToken()));
+                } else {
+                    minHeap.add(Integer.parseInt(st.nextToken()));
+                }
+
+                if (!minHeap.isEmpty() && minHeap.peek() < maxHeap.peek()) {
+                    minHeap.add(maxHeap.poll());
+                    maxHeap.add(minHeap.poll());
+                }
 
                 if (j % 2 == 0) {
-                    printMiddleValue(ascPq, descPq, j);
+                    System.out.print(maxHeap.peek() + " ");
                 }
             }
             System.out.println();
         }
-    }
-
-    public static void printMiddleValue(PriorityQueue<Integer> ascPq, PriorityQueue<Integer> descPq, int num) {
-        PriorityQueue<Integer> copyAscPq = new PriorityQueue<>();
-        PriorityQueue<Integer> copyDescPq = new PriorityQueue<>();
-
-        copyAscPq.addAll(ascPq);
-        copyDescPq.addAll(descPq);
-
-
-        for (int i = 0; i < num / 2; i++) {
-            copyDescPq.remove(copyAscPq.poll());
-            copyDescPq.poll();
-        }
-
-        System.out.print(copyAscPq.poll() + " ");
     }
 }
