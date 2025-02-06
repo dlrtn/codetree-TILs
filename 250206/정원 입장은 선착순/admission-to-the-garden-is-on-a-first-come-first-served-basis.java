@@ -31,6 +31,8 @@ public class Main {
             for (int i = 0; i < humanArrayList.size(); i++) {
                 if (humanArrayList.get(i).arriveTime <= nowTime) {
                     pq.add(humanArrayList.get(i));
+                } else {
+                    break;
                 }
             }
 
