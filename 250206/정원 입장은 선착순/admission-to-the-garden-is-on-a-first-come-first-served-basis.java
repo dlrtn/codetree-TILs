@@ -23,42 +23,35 @@ public class Main {
 
             humanArrayList.add(new Human(i + 1, arriveTime, runningTime));
         }
-        humanArrayList.sort(new Comparator<Human>() {
-            @Override
-            public int compare(Human o1, Human o2) {
-                return o1.arriveTime - o2.arriveTime;
-            }
-        });
 
-        pq.add(humanArrayList.get(0));
-        humanArrayList.remove(0);
 
         int nowTime = 0;
         int maxWaitingTime = 0;
         while (!humanArrayList.isEmpty()) {
-            if (nowTime == 0) {
-                Human human = pq.poll();
-                nowTime += human.arriveTime + human.runningTime;
-            } else {
-                for (int i = 0; i < humanArrayList.size(); i++) {
-                    if (humanArrayList.get(i).arriveTime <= nowTime) {
-                        pq.add(humanArrayList.get(i));
-                    }
+            for (int i = 0; i < humanArrayList.size(); i++) {
+                if (humanArrayList.get(i).arriveTime <= nowTime) {
+                    pq.add(humanArrayList.get(i));
                 }
-
-                if (pq.isEmpty()) {
-                    nowTime++;
-                    continue;
-                }
-
-                Human human = pq.poll();
-                maxWaitingTime = Math.max(maxWaitingTime, nowTime - human.arriveTime);
-                nowTime += human.runningTime;
-
-                humanArrayList.remove(human);
-
-                pq.clear();
             }
+
+            if (pq.isEmpty()) {
+                humanArrayList.sort(Comparator.comparingInt(o -> o.arriveTime));
+
+                pq.add(humanArrayList.get(0));
+                humanArrayList.remove(0);
+            }
+
+            Human human = pq.poll();
+            maxWaitingTime = Math.max(maxWaitingTime, nowTime - human.arriveTime);
+            if (nowTime < human.arriveTime) {
+                nowTime = human.runningTime + human.arriveTime;
+            } else {
+                nowTime += human.runningTime;
+            }
+
+            humanArrayList.remove(human);
+
+            pq.clear();
         }
 
         System.out.println(maxWaitingTime);
