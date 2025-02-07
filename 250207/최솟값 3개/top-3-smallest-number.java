@@ -21,7 +21,7 @@ public class Main {
             if (list.size() >= 3) {
                 list.sort(Comparator.naturalOrder());
 
-                int mul = 1;
+                long mul = 1;
                 for (int j = 0; j < 3; j++) {
                     mul *= list.get(j);
                 }
