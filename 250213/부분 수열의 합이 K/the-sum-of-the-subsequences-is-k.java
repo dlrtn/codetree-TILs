@@ -26,7 +26,7 @@ public class Main {
                 sum += arr[i] - arr[i - 2];
             }
 
-            if (sum == k) {
+            if (sum == k || arr[i] == k) {
                 count++;
             }
         }
