@@ -27,8 +27,8 @@ public class Main {
             }
         }
 
-        for (int i = 1; i < n - k + 1; i++) {
-            for (int j = 1; j < n - k + 1; j++) {
+        for (int i = 0; i < n - k + 1; i++) {
+            for (int j = 0; j < n - k + 1; j++) {
                 int sum = cummulativeSum[i + k][j + k] - cummulativeSum[i][j + k] - cummulativeSum[i + k][j] + cummulativeSum[i][j];
                 max = Math.max(max, sum);
             }
