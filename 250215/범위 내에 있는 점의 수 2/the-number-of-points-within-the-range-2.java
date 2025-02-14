@@ -18,8 +18,10 @@ public class Main {
             arr[Integer.parseInt(st.nextToken())]++;
         }
 
-        for (int i = 1; i < 1000001; i++) {
-            if (arr[i] == 1) {
+        for (int i = 0; i < 1000001; i++) {
+            if (i == 0) {
+                continue;
+            } else if (arr[i] == 1) {
                 arr[i] += arr[i - 1];
             } else {
                 arr[i] = arr[i - 1];
@@ -32,8 +34,11 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            System.out.println(arr[b] - arr[a - 1]);
+            if (a == 0) {
+                System.out.println(arr[b]);
+            } else {
+                System.out.println(arr[b] - arr[a - 1]);
+            }
         }
-
     }
 }
