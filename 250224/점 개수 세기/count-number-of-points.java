@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
 
@@ -19,15 +18,36 @@ public class Main {
             map.put(Integer.parseInt(st.nextToken()), i + 1);
         }
 
+        Map<Integer, Integer> map2 = new HashMap<>();
+        TreeSet<Integer> set = new TreeSet<>(map.keySet());
+        int count = 1;
+        for (Integer integer: map.keySet()) {
+            map2.put(integer, count++);
+        }
+
         for (int i = 0; i < q; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
 
-            int left = map.ceilingKey(start) == null ? 0 : map.ceilingKey(start);
-            int right = map.floorKey(end) == null ? 0 : map.floorKey(end);
+            if (set.first() <= start) {
+                start = set.ceiling(start) != null ? map2.get(set.ceiling(start)) - 1 : n;
+            } else {
+                start = 0;
+            }
 
-            System.out.println(map.get(right) - map.get(left) + 1);
+            if (set.last() >= end) {
+                end = map2.get(set.floor(end));
+            } else {
+                end = n;
+            }
+
+            if (end < set.first() || set.last() < start) {
+                System.out.println(0);
+                continue;
+            }
+
+            System.out.println(end - start);
         }
 
     }
