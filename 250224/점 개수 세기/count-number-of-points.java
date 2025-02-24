@@ -42,7 +42,7 @@ public class Main {
                 end = n;
             }
 
-            if (end < set.first() || set.last() < start) {
+            if (end < set.first() || set.last() < start || start >= end) {
                 System.out.println(0);
                 continue;
             }
