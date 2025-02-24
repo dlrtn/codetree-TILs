@@ -1,54 +1,91 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
+
+class Pair {
+    int x;
+    int y;
+
+    public Pair(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 
 public class Main {
+    static int n;
+    static int q;
+    static int[] prefix;
+    static Pair[] pairs;
+    static int[] points;
+    static TreeSet<Integer> treeSet = new TreeSet<>();
+    static HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+    static int lowerBound(int i) {
+        if (treeSet.ceiling(i) != null) {
+            return hashMap.get(treeSet.ceiling(i));
+        }
+
+        return treeSet.size() + 1;
+    }
+
+    static int upperBound(int i) {
+        if (treeSet.floor(i) != null) {
+            return hashMap.get(treeSet.floor(i));
+        }
+
+        return 0;
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        int n = Integer.parseInt(st.nextToken());
-        int q = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        q = Integer.parseInt(st.nextToken());
 
-        TreeMap<Integer, Integer> map = new TreeMap<>();
+        prefix = new int[n * 2 + 2];
+        pairs = new Pair[100001];
+        points = new int[n + 1];
+
         st = new StringTokenizer(br.readLine());
+
         for (int i = 0; i < n; i++) {
-            map.put(Integer.parseInt(st.nextToken()), i + 1);
+            int num = Integer.parseInt(st.nextToken());
+            treeSet.add(num);
+            points[i] = num;
         }
 
-        Map<Integer, Integer> map2 = new HashMap<>();
-        TreeSet<Integer> set = new TreeSet<>(map.keySet());
-        int count = 1;
-        for (Integer integer: map.keySet()) {
-            map2.put(integer, count++);
+        int index = 1;
+
+        for (int i : treeSet) {
+            hashMap.put(i, index++);
+        }
+
+        for (int i = 0; i < n; i++) {
+            prefix[hashMap.get(points[i])]++;
+        }
+
+        for (int i = 1; i <= index; i++) {
+            prefix[i] += prefix[i - 1];
         }
 
         for (int i = 0; i < q; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
 
-            if (set.first() <= start) {
-                start = set.ceiling(start) != null ? map2.get(set.ceiling(start)) - 1 : n;
-            } else {
-                start = 0;
-            }
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
 
-            if (set.last() >= end) {
-                end = set.floor(end) != null ? map2.get(set.floor(end)) : 0;
-            } else {
-                end = n;
-            }
+            int newX = lowerBound(x);
+            int newY = upperBound(y);
 
-            if (end < set.first() || set.last() < start || start >= end) {
-                System.out.println(0);
-                continue;
-            }
-
-            System.out.println(end - start);
+            sb.append(prefix[newY] - prefix[newX - 1]).append("\n");
         }
 
+        System.out.println(sb);
     }
 }
