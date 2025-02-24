@@ -37,7 +37,7 @@ public class Main {
             }
 
             if (set.last() >= end) {
-                end = map2.get(set.floor(end));
+                end = set.floor(end) != null ? map2.get(set.floor(end)) : n;
             } else {
                 end = n;
             }
