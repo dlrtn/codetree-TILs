@@ -25,7 +25,7 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             scissors[i] = isWin(opponents[i], "S") ? 1 : 0;
-            rock[i] = isWin(opponents[i], "R") ? 1 : 0;
+            rock[i] = isWin(opponents[i], "H") ? 1 : 0;
             paper[i] = isWin(opponents[i], "P") ? 1 : 0;
         }
 
@@ -63,13 +63,13 @@ public class Main {
             int p = 0;
 
             if (i == 0) {
-                s += rScissors[n - 1];
-                r += rRock[n - 1];
-                p += rPaper[n - 1];
+                s += Math.max(lRock[n - 1], lPaper[n - 1]);
+                r += Math.max(lScissors[n - 1], lPaper[n - 1]);
+                p += Math.max(lScissors[n - 1], lRock[n - 1]);
             } else if (i == n - 1) {
-                s += lScissors[i];
-                r += lRock[i];
-                p += lPaper[i];
+                s += lScissors[i - 1] + Math.max(rRock[n - 1], rPaper[n - 1]);
+                r += lRock[i - 1] + Math.max(rScissors[n - 1], rPaper[n - 1]);
+                p += lPaper[i - 1] + Math.max(rScissors[n - 1], rRock[n - 1]);
             } else {
                 s += lScissors[i - 1] + Math.max(rRock[i + 1], rPaper[i + 1]);
                 r += lRock[i - 1] + Math.max(rScissors[i + 1], rPaper[i + 1]);
@@ -84,12 +84,12 @@ public class Main {
 
     public static boolean isWin(String opponent, String me) {
         switch (opponent) {
-            case "R":
-                return !me.equals("S");
+            case "H":
+                return me.equals("P");
             case "S":
-                return !me.equals("P");
+                return me.equals("H");
             case "P":
-                return !me.equals("R");
+                return me.equals("S");
             default:
                 return false;
         }
