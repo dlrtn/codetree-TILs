@@ -62,16 +62,18 @@ public class Main {
             int r = 0;
             int p = 0;
 
-            if (i > 0) {
-                s += lScissors[i - 1];
-                r += lRock[i - 1];
-                p += lPaper[i - 1];
-            }
-
-            if (i < n - 1) {
-                s += rScissors[i + 1];
-                r += rRock[i + 1];
-                p += rPaper[i + 1];
+            if (i == 0) {
+                s += rScissors[n - 1];
+                r += rRock[n - 1];
+                p += rPaper[n - 1];
+            } else if (i == n - 1) {
+                s += lScissors[i];
+                r += lRock[i];
+                p += lPaper[i];
+            } else {
+                s += lScissors[i - 1] + Math.max(rRock[i + 1], rPaper[i + 1]);
+                r += lRock[i - 1] + Math.max(rScissors[i + 1], rPaper[i + 1]);
+                p += lPaper[i - 1] + Math.max(rScissors[i + 1], rRock[i + 1]);
             }
 
             max = Math.max(max, Math.max(s, Math.max(r, p)));
