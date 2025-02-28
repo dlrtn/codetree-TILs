@@ -71,9 +71,9 @@ public class Main {
                 r += lRock[i - 1] + Math.max(rScissors[n - 1], rPaper[n - 1]);
                 p += lPaper[i - 1] + Math.max(rScissors[n - 1], rRock[n - 1]);
             } else {
-                s += lScissors[i - 1] + Math.max(rRock[i + 1], rPaper[i + 1]);
-                r += lRock[i - 1] + Math.max(rScissors[i + 1], rPaper[i + 1]);
-                p += lPaper[i - 1] + Math.max(rScissors[i + 1], rRock[i + 1]);
+                s += lScissors[i - 1] + Math.max(rRock[i], rPaper[i]);
+                r += lRock[i - 1] + Math.max(rScissors[i], rPaper[i]);
+                p += lPaper[i - 1] + Math.max(rScissors[i], rRock[i]);
             }
 
             max = Math.max(max, Math.max(s, Math.max(r, p)));
