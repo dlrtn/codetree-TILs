@@ -37,11 +37,11 @@ public class Main {
             w[i] += w[i + 1];
         }
 
-        int count = 0;
+        Long count = 0L;
 
         for (int i = 0; i < n; i++) {
             if (s.charAt(i) == 'O') {
-                count += c[i] * w[i];
+                count += (long) c[i] * w[i];
             }
         }
 
