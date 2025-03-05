@@ -9,7 +9,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[100001];
+        int[] arr = new int[200001];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -23,7 +23,7 @@ public class Main {
         }
 
         int max = 0;
-        for (int i = 0; i < 100001; i++) {
+        for (int i = 0; i < 200001; i++) {
             max = Math.max(max, arr[i]);
         }
 
