@@ -17,14 +17,15 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
 
-            for (int j = start; j <= end; j++) {
-                arr[j]++;
-            }
+            arr[start]++;
+            arr[end]--;
         }
 
         int max = 0;
+        int sum = 0;
         for (int i = 0; i < 200001; i++) {
-            max = Math.max(max, arr[i]);
+            sum += arr[i];
+            max = Math.max(max, sum);
         }
 
         bw.write(max + "\n");
