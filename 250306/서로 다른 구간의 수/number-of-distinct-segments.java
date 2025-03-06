@@ -1,5 +1,8 @@
 import java.io.*;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -25,7 +28,7 @@ public class Main {
 
         HashSet<Integer> visited = new HashSet<>();
         int answer = 0;
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < n * 2; i++) {
             int x = points.get(i).x;
             int index = points.get(i).index;
             boolean isStart = points.get(i).isStart;
@@ -59,7 +62,7 @@ public class Main {
 
         @Override
         public int compareTo(Point o) {
-            return x - o.x;
+            return this.x - o.x;
         }
     }
 }
