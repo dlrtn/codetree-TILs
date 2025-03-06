@@ -8,7 +8,7 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
 
-        LinkedList<Point> points = new LinkedList<>();
+        ArrayList<Point> points = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
 
@@ -38,7 +38,7 @@ public class Main {
                 visited.remove(index);
             }
         }
-        
+
         System.out.println(answer);
     }
 
