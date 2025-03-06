@@ -1,14 +1,9 @@
 import java.io.*;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
@@ -24,7 +19,7 @@ public class Main {
             points.add(new Point(b, false, i));
         }
 
-        Collections.sort(points);
+        points.sort(Comparator.comparingInt(p -> p.x));
 
         HashSet<Integer> visited = new HashSet<>();
         int answer = 0;
@@ -43,10 +38,8 @@ public class Main {
                 visited.remove(index);
             }
         }
-
-        bw.write(answer + "\n");
-        bw.flush();
-        bw.close();
+        
+        System.out.println(answer);
     }
 
     public static class Point implements Comparable<Point> {
