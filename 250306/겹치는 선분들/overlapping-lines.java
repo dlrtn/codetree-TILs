@@ -36,9 +36,14 @@ public class Main {
 
         int count = 0;
         int answer = 0;
+        int prev = 0;
         for (int i = 0; i < n * 2; i++) {
             int x = points.get(i).x;
             boolean isStart = points.get(i).isStart;
+
+            if (count >= k) {
+                answer += Math.abs(x - prev);
+            }
 
             if (isStart) {
                 count++;
@@ -46,9 +51,7 @@ public class Main {
                 count--;
             }
 
-            if (count >= k) {
-                answer++;
-            }
+            prev = x;
         }
 
         System.out.println(answer);
