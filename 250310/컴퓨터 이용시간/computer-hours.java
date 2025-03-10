@@ -14,22 +14,22 @@ public class Main {
 
         ArrayList<Point> list = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            pq.add(i);
+            pq.add(i + 1);
 
             st = new StringTokenizer(br.readLine());
 
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            list.add(new Point(x, true, i));
-            list.add(new Point(y, false, i));
+            list.add(new Point(x, true, i + 1));
+            list.add(new Point(y, false, i + 1));
         }
 
         list.sort((a, b) -> {
             return a.x - b.x;
         });
 
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new TreeMap<>();
         for (int i = 0; i < 2 * n; i++) {
             Point p = list.get(i);
 
@@ -44,7 +44,7 @@ public class Main {
         }
 
         map.forEach((k, v) -> {
-            System.out.print(v + 1 + " ");
+            System.out.print(v + " ");
         });
     }
 
