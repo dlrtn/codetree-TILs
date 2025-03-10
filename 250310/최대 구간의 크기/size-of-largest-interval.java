@@ -49,17 +49,6 @@ public class Main {
 
             now = p.x;
         }
-            this.x = x;
-            this.isStarted = isStarted;
-        }
-    }
-}
-
-
-
-
-
-
 
         System.out.println(max);
     }
