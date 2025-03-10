@@ -29,8 +29,8 @@ public class Main {
         int answer = 0;
         int duplicates = 0;
         int now = 0;
-        while (!list.isEmpty()) {
-            Point p = list.remove(0);
+        for (int i = 0; i < 2 * n; i++) {
+            Point p = list.get(i);
 
             if (now != 0 && duplicates > 0) {
                 answer += Math.abs(p.x - now);
