@@ -21,7 +21,22 @@ public class Main {
             list.add(new Point(x2, false, i + 1));
         }
 
-        list.sort(Comparator.comparingInt(p -> p.x));
+        list.sort(new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                if (o1.x == o2.x) {
+                    if (o1.isStarted) {
+                        return -1;
+                    } else if (o2.isStarted) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+                return o1.x - o2.x;
+            }
+        });
+
 
         int max = Integer.MIN_VALUE;
         Set<Integer> set = new HashSet<>();
