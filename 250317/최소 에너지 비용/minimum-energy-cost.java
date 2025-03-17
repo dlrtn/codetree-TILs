@@ -22,29 +22,26 @@ public class Main {
             places[i] = Integer.parseInt(st.nextToken());
         }
 
-        int[] cumulativeSum = new int[n - 1];
-        cumulativeSum[0] = between[0];
-        for (int i = 1; i < n - 1; i++) {
-            cumulativeSum[i] = cumulativeSum[i - 1] + between[i];
-        }
-
         int i = 0;
-        int sum = 0;
+        long sum = 0;
         int now = places[0];
-        int nowCumulativeSum = 0;
-        while (i < cumulativeSum.length) {
-            if (places[i] <= places[i + 1]) {
+        int energySum = 0;
+
+        while (i < between.length) {
+            energySum += between[i];
+            if (now <= places[i + 1]) {
                 i++;
             } else {
-                sum += (cumulativeSum[i] - nowCumulativeSum) * now;
-                nowCumulativeSum += cumulativeSum[i];
+                sum += (long) energySum * now;
+                energySum = 0;
+
                 i++;
                 now = places[i];
             }
         }
 
-        if (places[n - 1] > nowCumulativeSum) {
-            sum += (cumulativeSum[n - 2] - nowCumulativeSum) * now;
+        if (energySum != 0) {
+            sum += (long) energySum * now;
         }
 
         System.out.println(sum);
