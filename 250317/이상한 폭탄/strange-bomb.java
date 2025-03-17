@@ -33,7 +33,7 @@ public class Main {
             }
         }
 
-        int max = 0;
+        int max = -1;
         for (int i = 0; i < n; i++) {
             if (r[i] >= k) {
                 max = Math.max(max, numbers[i]);
