@@ -25,14 +25,14 @@ public class Main {
         int i = 0;
         long sum = 0;
         int now = places[0];
-        int energySum = 0;
+        long energySum = 0;
 
         while (i < between.length) {
             energySum += between[i];
             if (now <= places[i + 1]) {
                 i++;
             } else {
-                sum += (long) energySum * now;
+                sum += energySum * now;
                 energySum = 0;
 
                 i++;
@@ -41,7 +41,7 @@ public class Main {
         }
 
         if (energySum != 0) {
-            sum += (long) energySum * now;
+            sum += energySum * now;
         }
 
         System.out.println(sum);
