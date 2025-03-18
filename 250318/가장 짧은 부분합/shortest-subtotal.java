@@ -24,6 +24,7 @@ public class Main {
                 sum += arr[j];
                 if (sum >= s) {
                     min = Math.min(min, j - i + 1);
+                    break;
                 }
             }
         }
