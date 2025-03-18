@@ -17,22 +17,29 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int min = Integer.MAX_VALUE;
+        // 가능한 구간 중 최대 크기를 구합니다.
+        int ans = Integer.MAX_VALUE;
+
+        // 구간을 잡아봅니다.
+        int sumVal = 0;
+        int j = 0;
         for (int i = 0; i < n; i++) {
-            long sum = 0;
-            for (int j = i; j < n; j++) {
-                sum += arr[j];
-                if (sum >= s) {
-                    min = Math.min(min, j - i + 1);
-                    break;
-                }
+            while (j < n && sumVal < s) {
+                sumVal += arr[j];
+                j++;
             }
+
+            if (sumVal >= s) {
+                ans = Math.min(ans, j - i);
+            }
+
+            sumVal -= arr[i];
         }
 
-        if (min == Integer.MAX_VALUE) {
-            System.out.println("-1");
+        if (ans == Integer.MAX_VALUE) {
+            System.out.println(-1);
         } else {
-            System.out.println(min);
+            System.out.println(ans);
         }
     }
 }
