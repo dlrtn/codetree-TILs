@@ -16,7 +16,7 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int[] sum = new int[n];
+        long[] sum = new long[n];
         sum[0] = arr[0];
         for (int i = 1; i < n; i++) {
             sum[i] = sum[i - 1] + arr[i];
@@ -24,7 +24,7 @@ public class Main {
 
         int max = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
+            for (int j = i + 1 + max; j < n; j++) {
                 if ((sum[j] - sum[i]) % 7 == 0) {
                     max = Math.max(max, j - i);
                 }
