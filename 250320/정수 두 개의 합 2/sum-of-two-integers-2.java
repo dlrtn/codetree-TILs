@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -13,23 +12,23 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-        ArrayList<Integer> list = new ArrayList<>();
+        int[] list = new int[n];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
 
-            list.add(Integer.parseInt(st.nextToken()));
+            list[i] = Integer.parseInt(st.nextToken());
         }
 
-        list.sort(Comparator.comparingInt(Integer::intValue));
+        list = Arrays.stream(list).sorted().toArray();
 
         int count = 0;
 
         for (int i = 0; i < n - 1; i++) {
-            int sum = list.get(i);
+            int sum = list[i];
             int j = i + 1;
 
-            while (j < n && sum + list.get(j) <= k) {
+            while (j < n && sum + list[j] <= k) {
                 count++;
                 j++;
             }
