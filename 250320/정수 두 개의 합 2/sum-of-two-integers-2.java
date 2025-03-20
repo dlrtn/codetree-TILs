@@ -29,7 +29,7 @@ public class Main {
             int sum = list.get(i);
             int j = i + 1;
 
-            while (sum + list.get(j) <= k) {
+            while (j < n && sum + list.get(j) <= k) {
                 count++;
                 j++;
             }
