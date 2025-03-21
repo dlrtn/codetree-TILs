@@ -37,7 +37,7 @@ public class Main {
             i++;
             j++;
 
-            if (j == 1000001) {
+            if (j == 1000002) {
                 break;
             }
             count += arr[j];
