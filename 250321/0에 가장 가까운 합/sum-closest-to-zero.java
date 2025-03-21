@@ -22,10 +22,10 @@ public class Main {
 
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < n - 1; i++) {
-            int j = i;
-            while (j < n - 1 && Math.abs(a[i] + a[j + 1]) <= min) {
-                min = Math.abs(a[i] + a[j + 1]);
-                j++;
+            int j = n - 1;
+            while (j > i && (a[i] < 0 || Math.abs(a[i] + a[j]) <= min)) {
+                min = Math.min(Math.abs(a[i] + a[j]), min);
+                j--;
             }
         }
 
