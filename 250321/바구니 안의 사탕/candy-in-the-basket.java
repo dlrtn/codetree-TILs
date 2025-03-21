@@ -8,7 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int[] arr = new int[100002];
+        int[] arr = new int[1000002];
 
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
@@ -25,8 +25,8 @@ public class Main {
         int max = 0;
         int i = 0, j = 0;
         int count = 0;
-        while (j < 100001) {
-            while (j < 100001 && j - i < 2 * k) {
+        while (j < 1000001) {
+            while (j < 1000001 && j - i < 2 * k) {
                 count += arr[j];
                 j++;
             }
