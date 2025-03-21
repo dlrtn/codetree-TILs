@@ -21,11 +21,14 @@ public class Main {
         a = Arrays.stream(a).sorted().toArray();
 
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i < n - 1; i++) {
-            int j = n - 1;
-            while (j > i && (a[i] < 0 || Math.abs(a[i] + a[j]) <= min)) {
-                min = Math.min(Math.abs(a[i] + a[j]), min);
+        int j = n - 1;
+        for (int i = 0; i < n; i++) {
+            if (i < j)
+                min = Math.min(min, Math.abs(a[i] + a[j]));
+
+            while (i < j - 1 && a[i] + a[j] > 0) {
                 j--;
+                min = Math.min(min, Math.abs(a[i] + a[j]));
             }
         }
 
