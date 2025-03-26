@@ -35,24 +35,20 @@ public class Main {
         Map<Integer, Integer> map = new HashMap<>();
         int j = 0;
         for (int i = 0; i < n; i++) {
-            while (j < n && originalMap.get(arr[j]) != 1) {
+            while (j < n && originalMap.get(arr[j]) != 1 && map.size() != m) {
                 map.put(arr[j], map.getOrDefault(arr[j], 0) + 1);
-                if (originalMap.get(arr[j]) == 1) {
-                    originalMap.remove(arr[j]);
-                } else {
-                    originalMap.put(arr[j], originalMap.getOrDefault(arr[j], 0) - 1);
-                }
+                originalMap.put(arr[j], originalMap.get(arr[j]) - 1);
                 j++;
             }
 
-            if (originalMap.size() == map.size() && map.size() == m) {
+            if (originalMap.size() == m && map.size() == m) {
                 answer = Math.min(answer, j - i);
             }
 
             if (map.get(arr[i]) == 1) {
                 map.remove(arr[i]);
             } else {
-                map.put(arr[i], map.getOrDefault(arr[i], 0) - 1);
+                map.put(arr[i], map.get(arr[i]) - 1);
             }
             originalMap.put(arr[i], originalMap.getOrDefault(arr[i], 0) + 1);
         }
