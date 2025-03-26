@@ -57,6 +57,10 @@ public class Main {
             originalMap.put(arr[i], originalMap.getOrDefault(arr[i], 0) + 1);
         }
 
-        System.out.println(answer);
+        if (answer == Integer.MAX_VALUE) {
+            System.out.println(-1);
+        } else {
+            System.out.println(answer);
+        }
     }
 }
