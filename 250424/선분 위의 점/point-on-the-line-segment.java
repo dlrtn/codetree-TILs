@@ -15,6 +15,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
+        
+        arr = java.util.Arrays.stream(arr).distinct().sorted().toArray();
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
