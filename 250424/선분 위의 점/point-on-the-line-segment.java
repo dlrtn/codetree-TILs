@@ -37,27 +37,11 @@ public class Main {
         }
     }
 
-    public static int upperBound(int[] arr, int targetNumber, int n) {
-        int left = 0;
-        int right = n - 1;
-        int minIdx = n;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (arr[mid] > targetNumber) {
-                right = mid - 1;
-                minIdx = Math.min(minIdx, mid);
-            } else {
-                left = mid + 1;
-            }
-        }
-
-        return minIdx;
-    }
-
     public static int lowerBound(int[] arr, int targetNumber, int n) {
         int left = 0;
         int right = n - 1;
         int minIdx = n;
+        
         while (left <= right) {
             int mid = (left + right) / 2;
             if (arr[mid] >= targetNumber) {
