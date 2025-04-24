@@ -16,7 +16,7 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        arr = java.util.Arrays.stream(arr).distinct().sorted().toArray();
+        arr = java.util.Arrays.stream(arr).sorted().toArray();
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
@@ -41,7 +41,7 @@ public class Main {
         int left = 0;
         int right = n - 1;
         int minIdx = n;
-        
+
         while (left <= right) {
             int mid = (left + right) / 2;
             if (arr[mid] >= targetNumber) {
