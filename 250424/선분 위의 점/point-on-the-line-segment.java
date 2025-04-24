@@ -25,11 +25,11 @@ public class Main {
             int end = Integer.parseInt(st.nextToken());
 
             int lowerBound = lowerBound(arr, start, n);
-            int upperBound = upperBound(arr, end, n);
+            int upperBound = lowerBound(arr, end, n);
 
             int count = upperBound - lowerBound;
 
-            if (upperBound != n && arr[upperBound] == end) {
+            if (upperBound < n && arr[upperBound] == end) {
                 count++;
             }
 
