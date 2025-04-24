@@ -24,16 +24,7 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
 
-            int lowerBound = lowerBound(arr, start, n);
-            int upperBound = lowerBound(arr, end, n);
-
-            int count = upperBound - lowerBound;
-
-            if (upperBound < n && arr[upperBound] == end) {
-                count++;
-            }
-
-            System.out.println(count);
+            System.out.println(upperBound(arr, end, n) - lowerBound(arr, start, n));
         }
     }
 
@@ -53,5 +44,23 @@ public class Main {
         }
 
         return minIdx;
+    }
+
+    public static int upperBound(int[] arr, int targetNumber, int n) {
+        int left = 0;
+        int right = n - 1;
+        int maxIdx = n;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] > targetNumber) {
+                right = mid - 1;
+                maxIdx = Math.min(maxIdx, mid);
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return maxIdx;
     }
 }
