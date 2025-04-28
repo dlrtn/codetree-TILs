@@ -20,7 +20,7 @@ public class Main {
 
 
         int result = distributionInteger(a, n, m);
-        
+
         if (result == Integer.MIN_VALUE) {
             System.out.println(0);
         } else {
@@ -30,7 +30,7 @@ public class Main {
 
     public static int distributionInteger(int[] a, int n, int m) {
         int left = 1;
-        int right = Arrays.stream(a).min().getAsInt();
+        int right = Arrays.stream(a).max().getAsInt();
         int result = Integer.MIN_VALUE;
 
         while (left <= right) {
