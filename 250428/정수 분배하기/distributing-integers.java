@@ -19,7 +19,13 @@ public class Main {
         }
 
 
-        System.out.println(distributionInteger(a, n, m));
+        int result = distributionInteger(a, n, m);
+        
+        if (result == Integer.MIN_VALUE) {
+            System.out.println(0);
+        } else {
+            System.out.println(result);
+        }
     }
 
     public static int distributionInteger(int[] a, int n, int m) {
