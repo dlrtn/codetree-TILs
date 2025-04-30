@@ -38,7 +38,7 @@ public class Main {
         double totalValue = 0;
 
         int index = 0;
-        while (m >= totalWeight) {
+        while (m >= totalWeight && index < n) {
             Jewel jewel = jewels.get(index);
 
             if (jewel.weight + totalWeight <= m) {
